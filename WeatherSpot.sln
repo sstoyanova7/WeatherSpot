@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherSpot.Host", ".\src\WeatherSpot.Host\WeatherSpot.Host.csproj", "{FE478A6A-E33A-40D7-93DC-C96E27F11F74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.Host", "src\WeatherSpot.Host\WeatherSpot.Host.csproj", "{FE478A6A-E33A-40D7-93DC-C96E27F11F74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherSpot.Models", "src\WeatherSpot.Models\WeatherSpot.Models.csproj", "{A4C461E7-2D60-40BA-8449-523A182975F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherSpot.DAL", "WeatherSpot.DAL\WeatherSpot.DAL.csproj", "{F4276747-CDED-4CFF-B62A-CCD3D929C5F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherSpot.BL", "WeatherSpot.BL\WeatherSpot.BL.csproj", "{CFD0A0DC-1868-411E-A906-AAFCEB08810C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{FE478A6A-E33A-40D7-93DC-C96E27F11F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE478A6A-E33A-40D7-93DC-C96E27F11F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE478A6A-E33A-40D7-93DC-C96E27F11F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C461E7-2D60-40BA-8449-523A182975F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C461E7-2D60-40BA-8449-523A182975F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C461E7-2D60-40BA-8449-523A182975F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C461E7-2D60-40BA-8449-523A182975F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4276747-CDED-4CFF-B62A-CCD3D929C5F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4276747-CDED-4CFF-B62A-CCD3D929C5F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4276747-CDED-4CFF-B62A-CCD3D929C5F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4276747-CDED-4CFF-B62A-CCD3D929C5F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFD0A0DC-1868-411E-A906-AAFCEB08810C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFD0A0DC-1868-411E-A906-AAFCEB08810C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFD0A0DC-1868-411E-A906-AAFCEB08810C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFD0A0DC-1868-411E-A906-AAFCEB08810C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

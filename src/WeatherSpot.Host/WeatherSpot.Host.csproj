@@ -9,9 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\WeatherSpot.BL\WeatherSpot.BL.csproj" />
+    <ProjectReference Include="..\WeatherSpot.Models\WeatherSpot.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,6 +13,7 @@ namespace WeatherSpot.Host
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using WeatherSpot.BL;
 
     public class Startup
     {
@@ -28,6 +29,7 @@ namespace WeatherSpot.Host
         {
 
             services.AddControllers();
+            services.AddSingleton<IUserService, UserService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherSpot.Host", Version = "v1" });
