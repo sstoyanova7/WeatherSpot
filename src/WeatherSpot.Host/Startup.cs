@@ -14,6 +14,7 @@ namespace WeatherSpot.Host
     using System.Linq;
     using System.Threading.Tasks;
     using WeatherSpot.BL;
+    using WeatherSpot.DAL;
 
     public class Startup
     {
@@ -29,6 +30,7 @@ namespace WeatherSpot.Host
         {
 
             services.AddControllers();
+            services.AddTransient<UserDAL>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSwaggerGen(c =>
             {

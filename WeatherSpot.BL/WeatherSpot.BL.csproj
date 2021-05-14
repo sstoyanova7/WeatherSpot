@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\WeatherSpot.Models\WeatherSpot.Models.csproj" />
+    <ProjectReference Include="..\WeatherSpot.DAL\WeatherSpot.DAL.csproj" />
   </ItemGroup>
 
 </Project>

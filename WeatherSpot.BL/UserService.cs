@@ -2,46 +2,158 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using WeatherSpot.BL.Extensions;
+    using WeatherSpot.DAL;
     using WeatherSpot.Models.RequestModels;
     using WeatherSpot.Models.ResponseModels;
 
     public class UserService : IUserService
     {
-        public List<RoleResponseModel> GetRoles()
+        private readonly UserDAL _userDaL;
+
+        public UserService(UserDAL userDal)
         {
-            throw new NotImplementedException();
+            _userDaL = userDal;
         }
 
-        public List<UserResponseModel> GetAllUsers()
+        //TODO: only if current user is active and is admin
+
+        public  IEnumerable<RoleResponseModel> GetRoles()
         {
-            throw new NotImplementedException();
+            return _userDaL.GetRoles();
         }
 
-        public List<UserResponseModel> GetActiveUsers()
+        public IEnumerable<UserResponseModel> GetUsers()
         {
-            throw new NotImplementedException();
+            return _userDaL.GetUsers();
         }
 
-        public bool ChangePassword(string newPassword)
+        public ResponseWithMessage CreateUser(NewUserRequestModel newUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var validationResult = ValidateUser(newUser);
+
+                if (!string.IsNullOrEmpty(validationResult))
+                {
+                    return new ResponseWithMessage(HttpStatusCode.BadRequest, validationResult);
+                }
+
+                var isCreated = _userDaL.CreateUser(newUser);
+
+                if (isCreated)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "User was created successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't create user!");
+                }
+            }
+            catch(Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to create user. {ex.Message}");
+            }
         }
 
-        public bool ChangeUserRole(ChangeUserRoleRequestModel requestModel)
+        public ResponseWithMessage ChangePassword(string newPassword)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (!newPassword.IsPasswordValid())
+                {
+                    return new ResponseWithMessage(HttpStatusCode.BadRequest, "Password is invalid!");
+                }
+
+                //TODO: get current userId
+                //TODO: hash password
+                var isUpdated = _userDaL.ChangePassword(newPassword, 1);
+
+                if (isUpdated)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "User password was was updated successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't update user password!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to update user password. {ex.Message}");
+            }
         }
 
-        public bool CreateUser(NewUserRequestModel newUser)
+        public ResponseWithMessage ChangeUserRole(ChangeUserRoleRequestModel requestModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var isUpdated = _userDaL.ChangeUserRole(requestModel);
+
+                if (isUpdated)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "User role was was updated successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't update user role!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to update user role. {ex.Message}");
+            }         
         }
 
-        public bool DeactivateUser(int userId)
+        public ResponseWithMessage DeactivateUser(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var isDeactivated = _userDaL.DeactivateUser(userId);
+
+                if (isDeactivated)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "User was deactivated successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't deactivat user!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to deactivate user. {ex.Message}");
+            }
         }
 
+        private string ValidateUser(NewUserRequestModel user)
+        {
+            var list = new List<string>();
 
+            if(!user.Username.IsUsernameValid())
+            {
+                list.Add("Username is invald.");
+            }
+
+            if(_userDaL.GetUser(user.Username).Any())
+            {
+                list.Add("User with that username already exists.");
+            }            
+
+            if(!user.Password.IsPasswordValid())
+            {
+                list.Add("Password is invalid.");
+            }
+
+            if(!user.Name.IsNameValid())
+            {
+                list.Add("Name is invalid.");
+            }
+
+            return string.Join(",", list);
+        }
     }
 }
