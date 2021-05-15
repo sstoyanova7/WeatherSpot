@@ -1,19 +1,17 @@
-﻿namespace WeatherSpot.DAL
+﻿namespace WeatherSpot.DataLayer
 {
     using Microsoft.Extensions.Configuration;
-    using System;
     using System.Collections.Generic;
     using WeatherSpot.Models.ResponseModels;
     using Dapper;
     using System.Data.SqlClient;
-    using System.Threading.Tasks;
     using WeatherSpot.Models.RequestModels;
 
-    public class UserDAL
+    public class UserDataLayer
     {
 
         private readonly string _connectionString;
-        public UserDAL(IConfiguration configuration)
+        public UserDataLayer(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }

@@ -4,17 +4,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using System.Threading.Tasks;
     using WeatherSpot.BL.Extensions;
-    using WeatherSpot.DAL;
+    using WeatherSpot.DataLayer;
     using WeatherSpot.Models.RequestModels;
     using WeatherSpot.Models.ResponseModels;
 
     public class UserService : IUserService
     {
-        private readonly UserDAL _userDaL;
+        private readonly UserDataLayer _userDaL;
 
-        public UserService(UserDAL userDal)
+        public UserService(UserDataLayer userDal)
         {
             _userDaL = userDal;
         }
