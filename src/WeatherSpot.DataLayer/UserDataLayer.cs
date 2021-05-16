@@ -16,14 +16,14 @@
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public IEnumerable<RoleResponseModel> GetRoles()
+        public IEnumerable<StationsResponseMoedl> GetRoles()
         {
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    $"SELECT * FROM UserRoles";
+                    "SELECT * FROM UserRoles";
 
-                return con.Query<RoleResponseModel>(query);
+                return con.Query<StationsResponseMoedl>(query);
             }
         }
 
@@ -32,7 +32,7 @@
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    $"SELECT * FROM Users";
+                    "SELECT * FROM Users";
 
                 return con.Query<UserResponseModel>(query);
             }
@@ -121,7 +121,7 @@
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    $"SELECT * FROM Users WHERE Username=@Username";
+                    "SELECT * FROM Users WHERE Username=@Username";
 
                 var parameters = new
                 {

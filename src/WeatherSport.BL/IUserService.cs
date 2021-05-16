@@ -6,7 +6,7 @@
 
     public interface IUserService
     {
-        public IEnumerable<RoleResponseModel> GetRoles();
+        public IEnumerable<StationsResponseMoedl> GetRoles();
         public IEnumerable<UserResponseModel> GetUsers();
         public ResponseWithMessage CreateUser(NewUserRequestModel newUser);
         public ResponseWithMessage ChangePassword(string newPassword);

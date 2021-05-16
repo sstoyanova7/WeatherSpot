@@ -20,7 +20,7 @@
 
         [HttpGet]
         [Route("api/getRoles")]
-        public IEnumerable<RoleResponseModel> GetRoles()
+        public IEnumerable<StationsResponseMoedl> GetRoles()
         {
             return _userService.GetRoles();
         }

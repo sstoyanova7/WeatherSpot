@@ -20,7 +20,7 @@
 
         //TODO: only if current user is active and is admin
 
-        public  IEnumerable<RoleResponseModel> GetRoles()
+        public  IEnumerable<StationsResponseMoedl> GetRoles()
         {
             return _userDaL.GetRoles();
         }

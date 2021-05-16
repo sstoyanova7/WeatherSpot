@@ -24,7 +24,9 @@ namespace WeatherSpot.Host
 
             services.AddControllers();
             services.AddTransient<UserDataLayer>();
+            services.AddTransient<StationDataLayer>();
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IStationService, StationService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherSpot.Host", Version = "v1" });

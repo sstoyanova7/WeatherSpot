@@ -1,6 +1,6 @@
 ﻿namespace WeatherSpot.Models.ResponseModels
 {
-    public class StationsResponseMoedl
+    public class RegionResponseModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
