@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.Host", "src\WeatherSpot.Host\WeatherSpot.Host.csproj", "{FE478A6A-E33A-40D7-93DC-C96E27F11F74}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.Models", "src\WeatherSpot.Models\WeatherSpot.Models.csproj", "{A4C461E7-2D60-40BA-8449-523A182975F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherSpot.BL", "src\WeatherSport.BL\WeatherSpot.BL.csproj", "{040FD3E5-6ABD-479A-8943-26BEB19FCC01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.BL", "src\WeatherSport.BL\WeatherSpot.BL.csproj", "{040FD3E5-6ABD-479A-8943-26BEB19FCC01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherSpot.DataLayer", "src\WeatherSpot.DataLayer\WeatherSpot.DataLayer.csproj", "{2846E87E-61F6-4223-B918-DBE1FCB9E7E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.DataLayer", "src\WeatherSpot.DataLayer\WeatherSpot.DataLayer.csproj", "{2846E87E-61F6-4223-B918-DBE1FCB9E7E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherSpot.Host", "src\WeatherSpot.Host\WeatherSpot.Host.csproj", "{18F68D7E-1533-4271-A95E-7AAAF47933C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FE478A6A-E33A-40D7-93DC-C96E27F11F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE478A6A-E33A-40D7-93DC-C96E27F11F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE478A6A-E33A-40D7-93DC-C96E27F11F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE478A6A-E33A-40D7-93DC-C96E27F11F74}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4C461E7-2D60-40BA-8449-523A182975F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4C461E7-2D60-40BA-8449-523A182975F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4C461E7-2D60-40BA-8449-523A182975F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{2846E87E-61F6-4223-B918-DBE1FCB9E7E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2846E87E-61F6-4223-B918-DBE1FCB9E7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2846E87E-61F6-4223-B918-DBE1FCB9E7E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F68D7E-1533-4271-A95E-7AAAF47933C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F68D7E-1533-4271-A95E-7AAAF47933C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F68D7E-1533-4271-A95E-7AAAF47933C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F68D7E-1533-4271-A95E-7AAAF47933C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
