@@ -26,9 +26,9 @@
         public string GenerateJSONWebToken(UserLoginRequestModel requestModel)
         {
             UserModel user = userService.GetUser(requestModel);
-            if (user == null)
+            if (user == null || !user.IsActive)
             {
-                throw new AccessViolationException("User with those credentials does not exist!");
+                throw new AccessViolationException("There is no active user with those credentials");
             }
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -36,7 +36,6 @@
 
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, requestModel.Username),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

@@ -1,9 +1,10 @@
 ﻿namespace WeatherSpot.BL
 {
+    using Microsoft.AspNetCore.Identity;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Net;
+    using System.Web.Helpers;
     using WeatherSpot.BL.Extensions;
     using WeatherSpot.DataLayer;
     using WeatherSpot.Models.RequestModels;
@@ -11,30 +12,31 @@
 
     public class UserService : IUserService
     {
-        private readonly UserDataLayer _userDaL;
+        private readonly UserDataLayer _userDal;
 
         public UserService(UserDataLayer userDal)
         {
-            _userDaL = userDal;
+            _userDal = userDal;
         }
 
         public UserModel GetUser(UserLoginRequestModel request)
         {
-            return _userDaL.GetUser(request.Username, request.Password);
+            var hashedPassword = Crypto.SHA256(request.Password);
+            return _userDal.GetUser(request.Username, hashedPassword);
         }
         public UserModel GetUser(string username)
         {
-            return _userDaL.GetUser(username);
+            return _userDal.GetUser(username);
         }
 
         public  IEnumerable<StationsResponseMoedl> GetRoles()
         {
-            return _userDaL.GetRoles();
+            return _userDal.GetRoles();
         }
 
         public IEnumerable<UserModel> GetUsers()
         {
-            return _userDaL.GetUsers();
+            return _userDal.GetUsers();
         }
 
         public ResponseWithMessage CreateUser(NewUserRequestModel newUser)
@@ -48,7 +50,9 @@
                     return new ResponseWithMessage(HttpStatusCode.BadRequest, validationResult);
                 }
 
-                var isCreated = _userDaL.CreateUser(newUser);
+                newUser.Password = Crypto.Hash(newUser.Password);
+
+                var isCreated = _userDal.CreateUser(newUser);
 
                 if (isCreated)
                 {
@@ -75,8 +79,8 @@
                 }
 
                 //TODO: get current userId
-                //TODO: hash password
-                var isUpdated = _userDaL.ChangePassword(newPassword, 1);
+                var hashedPassword = Crypto.Hash(newPassword);
+                var isUpdated = _userDal.ChangePassword(hashedPassword, 1);
 
                 if (isUpdated)
                 {
@@ -97,7 +101,7 @@
         {
             try
             {
-                var isUpdated = _userDaL.ChangeUserRole(requestModel);
+                var isUpdated = _userDal.ChangeUserRole(requestModel);
 
                 if (isUpdated)
                 {
@@ -118,7 +122,7 @@
         {
             try
             {
-                var isDeactivated = _userDaL.DeactivateUser(userId);
+                var isDeactivated = _userDal.DeactivateUser(userId);
 
                 if (isDeactivated)
                 {
@@ -144,7 +148,7 @@
                 list.Add("Username is invald.");
             }
 
-            if(_userDaL.GetUser(user.Username) != null)
+            if(_userDal.GetUser(user.Username) != null)
             {
                 list.Add("User with that username already exists.");
             }            
