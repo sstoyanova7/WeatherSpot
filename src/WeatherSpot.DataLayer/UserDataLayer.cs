@@ -16,6 +16,39 @@
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
+        public UserModel GetUser(string username)
+        {
+            using (var con = new SqlConnection(_connectionString))
+            {
+                var query =
+                    "SELECT * FROM Users WHERE Username = @Username";
+
+                var parameters = new
+                {
+                    Username = username
+                };
+
+                return con.QueryFirst<UserModel>(query, parameters);
+            }
+        }
+
+        public UserModel GetUser(string username, string password)
+        {
+            using (var con = new SqlConnection(_connectionString))
+            {
+                var query =
+                    "SELECT * FROM Users WHERE Username = @Username AND PasswordHash = @Password";
+
+                var parameters = new
+                {
+                    Username = username,
+                    password = password
+                };
+
+                return con.QueryFirst<UserModel>(query, parameters);
+            }
+        }
+
         public IEnumerable<StationsResponseMoedl> GetRoles()
         {
             using (var con = new SqlConnection(_connectionString))
@@ -27,14 +60,14 @@
             }
         }
 
-        public IEnumerable<UserResponseModel> GetUsers()
+        public IEnumerable<UserModel> GetUsers()
         {
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
                     "SELECT * FROM Users";
 
-                return con.Query<UserResponseModel>(query);
+                return con.Query<UserModel>(query);
             }
         }
 
@@ -113,22 +146,6 @@
                 var affectedRows = con.Execute(query, parameters);
 
                 return affectedRows == 1;
-            }
-        }
-
-        public IEnumerable<UserResponseModel> GetUser(string username)
-        {
-            using (var con = new SqlConnection(_connectionString))
-            {
-                var query =
-                    "SELECT * FROM Users WHERE Username=@Username";
-
-                var parameters = new
-                {
-                    Username = username
-                };
-
-                return con.Query<UserResponseModel>(query, parameters);
             }
         }
     }

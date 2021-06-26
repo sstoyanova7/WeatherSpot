@@ -27,7 +27,7 @@
 
         [HttpGet]
         [Route("api/getUsers")]
-        public IEnumerable<UserResponseModel> GetUsers()
+        public IEnumerable<UserModel> GetUsers()
         {
             return _userService.GetUsers();
         }
@@ -35,7 +35,7 @@
         //TODO: query params? 
         [HttpGet]
         [Route("api/getActiveUsers")]
-        public UserResponseModel GetActiveUsers()
+        public UserModel GetActiveUsers()
         {
             throw new NotImplementedException();
         }

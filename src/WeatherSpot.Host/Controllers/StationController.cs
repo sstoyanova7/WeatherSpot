@@ -18,7 +18,7 @@
 
         [HttpGet]
         [Route("api/getRegions")]
-        public IEnumerable<RegionResponseModel> GetRegions()
+        public IEnumerable<RegionModel> GetRegions()
         {
             return _stationService.GetRegions();
         }
@@ -34,7 +34,7 @@
         //queryparams
         [HttpGet]
         [Route("api/getCities")]
-        public IEnumerable<CityResponseModel> GetCities()
+        public IEnumerable<CityModel> GetCities()
         {
             return _stationService.GetCities();
         }

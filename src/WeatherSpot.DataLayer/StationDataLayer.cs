@@ -16,14 +16,14 @@
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public IEnumerable<RegionResponseModel> GetRegions()
+        public IEnumerable<RegionModel> GetRegions()
         {
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
                     "SELECT * FROM Regions";
 
-                return con.Query<RegionResponseModel>(query);
+                return con.Query<RegionModel>(query);
             }
         }
 
@@ -45,18 +45,18 @@
             }
         }
 
-        public IEnumerable<CityResponseModel> GetCities()
+        public IEnumerable<CityModel> GetCities()
         {
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
                     "SELECT * FROM Cities";
 
-                return con.Query<CityResponseModel>(query);
+                return con.Query<CityModel>(query);
             }
         }
 
-        public IEnumerable<CityResponseModel> GetCitiesByRegionId(int regionId)
+        public IEnumerable<CityModel> GetCitiesByRegionId(int regionId)
         {
             using (var con = new SqlConnection(_connectionString))
             {
@@ -68,7 +68,7 @@
                     RegionId = regionId
                 };
 
-                return con.Query<CityResponseModel>(query, parameters);
+                return con.Query<CityModel>(query, parameters);
             }
         }
 

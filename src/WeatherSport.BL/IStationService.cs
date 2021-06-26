@@ -6,9 +6,9 @@
 
     public interface IStationService
     {
-        public IEnumerable<RegionResponseModel> GetRegions();
+        public IEnumerable<RegionModel> GetRegions();
         public ResponseWithMessage AddNewRegion(string name);
-        public IEnumerable<CityResponseModel> GetCities(int? regionId = null);
+        public IEnumerable<CityModel> GetCities(int? regionId = null);
         public ResponseWithMessage AddNewCity(NewCityRequestModel request);
         public IEnumerable<StationsResponseMoedl> GetStations(int? cityId = null);
         public ResponseWithMessage AddNewStation(NewStationRequestModel request);

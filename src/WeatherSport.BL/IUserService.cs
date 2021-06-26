@@ -6,8 +6,10 @@
 
     public interface IUserService
     {
+        public UserModel GetUser(UserLoginRequestModel request);
+        public UserModel GetUser(string username);
         public IEnumerable<StationsResponseMoedl> GetRoles();
-        public IEnumerable<UserResponseModel> GetUsers();
+        public IEnumerable<UserModel> GetUsers();
         public ResponseWithMessage CreateUser(NewUserRequestModel newUser);
         public ResponseWithMessage ChangePassword(string newPassword);
         public ResponseWithMessage ChangeUserRole(ChangeUserRoleRequestModel requestModel);
