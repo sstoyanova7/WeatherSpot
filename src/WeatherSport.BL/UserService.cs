@@ -18,14 +18,21 @@
             _userDaL = userDal;
         }
 
-        //TODO: only if current user is active and is admin
+        public UserModel GetUser(UserLoginRequestModel request)
+        {
+            return _userDaL.GetUser(request.Username, request.Password);
+        }
+        public UserModel GetUser(string username)
+        {
+            return _userDaL.GetUser(username);
+        }
 
         public  IEnumerable<StationsResponseMoedl> GetRoles()
         {
             return _userDaL.GetRoles();
         }
 
-        public IEnumerable<UserResponseModel> GetUsers()
+        public IEnumerable<UserModel> GetUsers()
         {
             return _userDaL.GetUsers();
         }
@@ -137,7 +144,7 @@
                 list.Add("Username is invald.");
             }
 
-            if(_userDaL.GetUser(user.Username).Any())
+            if(_userDaL.GetUser(user.Username) != null)
             {
                 list.Add("User with that username already exists.");
             }            

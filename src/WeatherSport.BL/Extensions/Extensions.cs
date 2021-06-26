@@ -13,6 +13,11 @@
             return !string.IsNullOrEmpty(password) && password.Length > 5;
         }
 
+        public static bool IsEmailValid(this string email)
+        {
+            return !string.IsNullOrEmpty(email) && email.Length > 5;
+        }
+
         public static bool IsNameValid(this string name)
         {
             return !string.IsNullOrEmpty(name) && name.Length > 5;

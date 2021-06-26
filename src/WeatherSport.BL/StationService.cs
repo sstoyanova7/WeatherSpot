@@ -15,7 +15,7 @@
             _stationDal = stationDal;
         }
 
-        public IEnumerable<RegionResponseModel> GetRegions()
+        public IEnumerable<RegionModel> GetRegions()
         {
             return _stationDal.GetRegions();
         }
@@ -29,7 +29,7 @@
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CityResponseModel> GetCities(int? regionId = null)
+        public IEnumerable<CityModel> GetCities(int? regionId = null)
         {
             if (regionId == null)
             {
