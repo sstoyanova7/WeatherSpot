@@ -41,10 +41,16 @@
 
                 IActionResult response = Ok();
                 return response;
-            } catch (Exception e)
+            }
+            catch (AccessViolationException e)
             {
-                    Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    return Content(e.Message);               
+                Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                return Content(e.Message);
+            }
+            catch (Exception e)
+            {
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Content(e.Message);
             }
         }
 

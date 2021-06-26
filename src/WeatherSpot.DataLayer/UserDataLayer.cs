@@ -28,7 +28,7 @@
                     Username = username
                 };
 
-                return con.QueryFirst<UserModel>(query, parameters);
+                return con.QueryFirstOrDefault<UserModel>(query, parameters);
             }
         }
 
@@ -45,7 +45,7 @@
                     password = password
                 };
 
-                return con.QueryFirst<UserModel>(query, parameters);
+                return con.QueryFirstOrDefault<UserModel>(query, parameters);
             }
         }
 
@@ -76,14 +76,14 @@
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    "INSERT INTO Users(Username, PasswordHash, Name, RoleId) VALUES(@Username, @Password, @Name, @RoleId)";
+                    "INSERT INTO Users(Username, PasswordHash, Email, Name) VALUES(@Username, @Password, @Email, @Name)";
 
                 var parameters = new
                 {
                     Username = requestModel.Username,
                     Password = requestModel.Password,
+                    Email = requestModel.Email,
                     Name = requestModel.Name,
-                    RoleId = requestModel.RoleId
                 };
 
                 var insertedRoles = con.Execute(query, parameters);
