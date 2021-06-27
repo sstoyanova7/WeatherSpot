@@ -32,3 +32,12 @@
     width:200px;
     font-size: 18px;
 }
+
+input {
+    border:none;
+    padding:0.35rem;
+}
+
+input:focus {
+    outline: none;
+}

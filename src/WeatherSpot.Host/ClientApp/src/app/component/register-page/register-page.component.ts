@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NewUser } from '../../modules/NewUser';
-
+import { RegisterService } from 'src/app/services/register.service';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -15,20 +16,30 @@ export class RegisterPageComponent implements OnInit {
    * 
    */
 
-  public user: NewUser;
-  public username: string = "";
-  public password: string = "";
-  public confirmPassword: string = "";
+  public validatePasswords: boolean = true;
 
-  constructor() { }
+  constructor(private regService: RegisterService) { }
 
-  ngOnInit() {}
 
-  onSubmit() {
-    this.user = new NewUser(this.username, this.password); 
-    console.log(
-     this.user, this.confirmPassword
-    );
+  ngOnInit() {
+
+  }
+
+  log(e) {
+    console.log(e);
+  }
+
+  onSubmit(e: NgForm) {
+    console.log(e);
+    this.validatePasswords = e.value.password === e.value.confirmPassword ? true : false;
+    const newUser: NewUser = new NewUser(
+      e.value.username,
+      e.value.name,
+      e.value.email,
+      e.value.password
+    )
+
+    console.log(newUser);
   }
 
 }

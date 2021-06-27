@@ -13,6 +13,7 @@ import { LoginPageComponent } from './component/login-page/login-page.component'
 import { RegisterPageComponent } from './component/register-page/register-page.component';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
+import { RegisterService } from './services/register.service';
 
 
 
@@ -42,7 +43,7 @@ import { LabelModule } from '@progress/kendo-angular-label';
     InputsModule,
     LabelModule
   ],
-  providers: [],
+  providers: [RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

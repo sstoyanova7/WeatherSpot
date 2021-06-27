@@ -1,14 +1,15 @@
 export class NewUser {
     
     private username: string;
+    private name: string;
+    private email: string;
     private password: string;
-    private role: string;
-    
-    constructor(username: string, password: string) {
+
+    constructor(username: string, name: string, email: string, password: string) {
         this.username = username;
+        this.name = name;
+        this.email = email;
         this.password = password;
-        if(this.role === undefined) {
-            this.role = "";
-        }
+       
     }
 } 
