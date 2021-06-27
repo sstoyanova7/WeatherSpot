@@ -24,7 +24,7 @@ export class LoginPageComponent implements OnInit {
     if (e.valid) {
       //post user to backend
     } else {
-      // username || password incorrect. 
+      // username || password incorrect 
       this.isValid = false;
       setTimeout(() => {
         this.isValid = true;
