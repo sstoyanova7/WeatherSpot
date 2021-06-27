@@ -9,7 +9,7 @@
     using WeatherSpot.Models.ResponseModels;
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]/")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -26,7 +26,7 @@
         }
 
         [HttpGet]
-        [Route("api/getUsers")]
+        [Route("getUsers")]
         public IEnumerable<UserModel> GetUsers()
         {
             return _userService.GetUsers();
