@@ -6,24 +6,44 @@
             </kendo-card-header>
             <kendo-card-body>
                 <div class="form-container">
-                    <form #templateForm="ngForm">
+                    <div class="alert alert-danger text-center" *ngIf="!isValid">
+                        <p>Username or Password incorrect. Please try again.</p>
+                    </div>
+                    <form #templateForm="ngForm" (ngSubmit)="onSubmit(templateForm)">
                         <div class="input-container">
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Username">
-                                    <kendo-textbox name="username" [(ngModel)]="username" [showSuccessIcon]="username.length >= 5"
-                                        showErrorIcon="initial" required></kendo-textbox>
+                                <input 
+                                    required 
+                                    ngModel 
+                                    #usernameInput="ngModel" 
+                                    type="text"
+                                    name="username"
+                                />
+                                <div *ngIf="usernameInput.touched && !usernameInput.valid">
+                                    <kendo-formerror *ngIf="usernameInput.errors.required">Username is requred.</kendo-formerror>
+                                </div>
                                 </kendo-floatinglabel>
+                                
                             </div>
-                           
+
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Password">
-                                    <kendo-textbox name="password" [(ngModel)]="password" [showSuccessIcon]="password.length >= 5"
-                                        showErrorIcon="initial" required></kendo-textbox>
+                                    <input 
+                                        required
+                                        ngModel
+                                        #passwordInput="ngModel"
+                                        type="password" 
+                                        name="password" 
+                                />
+                                <div *ngIf="passwordInput.touched && !passwordInput.valid">
+                                    <kendo-formerror *ngIf="passwordInput.errors.required">Password is requred.</kendo-formerror>
+                                </div>
                                 </kendo-floatinglabel>
                             </div>
-                            
+
                             <div class="button-form">
-                                <button (click)="onSubmit()" kendoButton [primary]="true">Login</button>
+                                <button kendoButton [primary]="true">Login</button>
                             </div>
                         </div>
                     </form>

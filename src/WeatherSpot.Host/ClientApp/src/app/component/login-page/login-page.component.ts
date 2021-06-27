@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TypedRule } from 'tslint/lib/rules';
 import { User } from '../../modules/User';
 
 @Component({
@@ -8,19 +9,29 @@ import { User } from '../../modules/User';
 })
 export class LoginPageComponent implements OnInit {
 
-  public user: User;
-  public username: string = "";
-  public password: string = "";
-  public confirmPassword: string = "";
-
+  public isValid: boolean = true;
+  
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.user = new User(this.username, this.password);
+  onSubmit(e) {
+    console.log(e);
+    
+    const user: User = new User(e.value.username, e.value.password);
 
-    console.log(this.user);
+    if (e.valid) {
+      //post user to backend
+    } else {
+      // username || password incorrect. 
+      this.isValid = false;
+      setTimeout(() => {
+        this.isValid = true;
+      }, 3000)
+    }
+    
+    
+    
   }
 }
