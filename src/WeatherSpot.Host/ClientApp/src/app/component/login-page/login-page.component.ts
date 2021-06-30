@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypedRule } from 'tslint/lib/rules';
-import { User } from '../../modules/User';
+import { LoginUser } from '../../modules/loginUser';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
   onSubmit(e) {
     console.log(e);
     
-    const user: User = new User(e.value.username, e.value.password);
+    const user: LoginUser = new LoginUser(e.value.username, e.value.password);
 
     if (e.valid) {
       //post user to backend
