@@ -5,9 +5,11 @@
 }
 .container {
     max-width:1200px;
+    margin: 0 auto;
 }
 
 .register-container {
+    margin-top: 5rem;
     width:90%;
     height:500px;
     display:flex;
@@ -17,7 +19,6 @@
 
 .input-container {
     display: flex;
-  
     flex-direction: column;
     justify-content: center;
     align-items: center;

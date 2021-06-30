@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './component/nav-menu/nav-menu.component'; 
+import { NavMenuComponent } from './component/nav-menu/nav-menu.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
@@ -14,6 +14,7 @@ import { RegisterPageComponent } from './component/register-page/register-page.c
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { RegisterService } from './services/register.service';
+import { LoginService } from './services/login.service';
 
 
 
@@ -34,8 +35,10 @@ import { RegisterService } from './services/register.service';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: LoginPageComponent, pathMatch: 'full' },
+      // { path: '', component: LoginPageComponent, pathMatch: 'full' }, after login
+      { path: 'login', component: LoginPageComponent },
       { path: 'register', component: RegisterPageComponent }
+      // { path: '**', component: RegisterPageComponent } add 404 page
     ]),
     LayoutModule,
     BrowserAnimationsModule,
@@ -43,7 +46,7 @@ import { RegisterService } from './services/register.service';
     InputsModule,
     LabelModule
   ],
-  providers: [RegisterService],
+  providers: [RegisterService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
