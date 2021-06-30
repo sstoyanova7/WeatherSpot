@@ -19,7 +19,7 @@
         }
 
         [HttpGet]
-        [Route("api/getRoles")]
+        [Route("getRoles")]
         public IEnumerable<StationsResponseMoedl> GetRoles()
         {
             return _userService.GetRoles();
@@ -34,7 +34,7 @@
 
         //TODO: query params? 
         [HttpGet]
-        [Route("api/getActiveUsers")]
+        [Route("getActiveUsers")]
         public UserModel GetActiveUsers()
         {
             throw new NotImplementedException();
@@ -42,28 +42,28 @@
 
 
         [HttpPost]
-        [Route("api/createNewUser")]
+        [Route("createNewUser")]
         public ResponseWithMessage CreateNewUser([FromBody] NewUserRequestModel request)
         {
             return _userService.CreateUser(request);
         }
 
         [HttpPut]
-        [Route("api/changePassword")]        
+        [Route("changePassword")]        
         public ResponseWithMessage ChangePassword([FromBody] string password)
         {
             return _userService.ChangePassword(password);
         }
 
         [HttpPut]
-        [Route("api/changeUserRole")]
+        [Route("changeUserRole")]
         public ResponseWithMessage ChangeUserRole([FromBody] ChangeUserRoleRequestModel request)
         {
             return _userService.ChangeUserRole(request);
         }
 
         [HttpPut]
-        [Route("api/deactivateUser")]
+        [Route("deactivateUser")]
         public ResponseWithMessage DeactivateUser([FromBody] int userId)
         {
             return _userService.DeactivateUser(userId);
