@@ -166,5 +166,23 @@
                 return affectedRows == 1;
             }
         }
+
+        public bool ActivateUser(int userId)
+        {
+            using (var con = new SqlConnection(_connectionString))
+            {
+                var query =
+                    "UPDATE Users SET IsActive = 1 WHERE Id = @UserId";
+
+                var parameters = new
+                {
+                    UserId = userId
+                };
+
+                var affectedRows = con.Execute(query, parameters);
+
+                return affectedRows == 1;
+            }
+        }
     }
 }

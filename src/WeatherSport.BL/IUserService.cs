@@ -15,5 +15,6 @@
         public ResponseWithMessage ChangeUserRole(ChangeUserRoleRequestModel request);
         public ResponseWithMessage ChangeUsername(ChangeUsernameRequestModel request);
         public ResponseWithMessage DeactivateUser(int userId);
+        public ResponseWithMessage ActivateUser(int userId);
     }
 }

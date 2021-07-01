@@ -160,6 +160,27 @@
             }
         }
 
+        public ResponseWithMessage ActivateUser(int userId)
+        {
+            try
+            {
+                var isDeactivated = _userDal.ActivateUser(userId);
+
+                if (isDeactivated)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "User was activated successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't activat user!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to activate user. {ex.Message}");
+            }
+        }
+
         private string ValidateUser(NewUserRequestModel user)
         {
             var list = new List<string>();
