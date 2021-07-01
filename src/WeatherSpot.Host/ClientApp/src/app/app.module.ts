@@ -13,8 +13,9 @@ import { LoginPageComponent } from './component/login-page/login-page.component'
 import { RegisterPageComponent } from './component/register-page/register-page.component';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
-import { RegisterService } from './services/register.service';
-import { LoginService } from './services/login.service';
+import { UserService } from './services/user.service';
+import { ProfileComponent } from './component/profile/profile.component';
+
 
 
 
@@ -28,7 +29,8 @@ import { LoginService } from './services/login.service';
     LoginPageComponent,
     RegisterPageComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,7 +39,9 @@ import { LoginService } from './services/login.service';
     RouterModule.forRoot([
       // { path: '', component: LoginPageComponent, pathMatch: 'full' }, after login
       { path: 'login', component: LoginPageComponent },
-      { path: 'register', component: RegisterPageComponent }
+      { path: 'register', component: RegisterPageComponent },
+      { path: 'profile', component: ProfileComponent}
+      
       // { path: '**', component: RegisterPageComponent } add 404 page
     ]),
     LayoutModule,
@@ -46,7 +50,7 @@ import { LoginService } from './services/login.service';
     InputsModule,
     LabelModule
   ],
-  providers: [RegisterService, LoginService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

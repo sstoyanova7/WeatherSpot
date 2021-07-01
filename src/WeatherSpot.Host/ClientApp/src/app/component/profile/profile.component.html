@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="profile-change-container">
+        <div class="profile-change-items">
+            <div class="profile-change-item">
+                <kendo-expansionpanel title="change username">
+                    <p>current username: [username]</p>
+                    <form (ngSubmit)="onChangeUsername()">
+                        <div class="new-username-input">
+                            <kendo-floatinglabel text="Enter New Username">
+                                <input kendoTextBox type="text" name="newUsername" [(ngModel)]="newUsername" />
+                            </kendo-floatinglabel>
+                        </div>
+                        <div class="mt-3">
+                            <button kendoButton [primary]="true">Change Username</button>
+                        </div>
+                    </form>
+                </kendo-expansionpanel>
+            </div>
+
+            <div class="profile-change-item">
+                <kendo-expansionpanel title="change password">
+                    <form (ngSubmit)="onChangePassword()">
+                        <div>
+                            <kendo-floatinglabel text="Enter New Password">
+                                <input kendoTextBox type="password" name="newPassword" [(ngModel)]="newPassword"/>
+                            </kendo-floatinglabel>
+                        </div>
+                        <div>
+                            <kendo-floatinglabel text="Confirm New Password">
+                                <input kendoTextBox type="password" name="confirmNewPassword" [(ngModel)]="confirmNewPassword"/>
+                            </kendo-floatinglabel>
+                        </div>
+                        <div class="mt-3">
+                            <button kendoButton [primary]="true">Change Password</button>
+                        </div>
+                    </form>
+                </kendo-expansionpanel>
+            </div>
+
+            <div class="deactivate-account">
+                <kendo-expansionpanel title="deactivate account">
+                    <div class="alert alert-danger text-center">
+                        By clicking on the "deactivate button you will freeze your account until you activate it back.
+                    </div>
+                    <div class="mt-3">
+                        <button kendoButton [primary]="true" (click)="deactivateAccount()">Deactivate account</button>
+                    </div>
+                </kendo-expansionpanel>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,15 +2,15 @@
 
 ## Add UI:
 
->* User Page
+>* User Page - DONE
 >* Admin Page
 
 ## Add Functionality
 
 * User Page:
 
->* Change password
->* Deactivate account
+>* Change password - DONE
+>* Deactivate account - DONE
 
 * Admin Page:
 
