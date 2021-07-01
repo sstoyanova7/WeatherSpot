@@ -71,7 +71,7 @@
             }
         }
 
-        public bool CreateUser(NewUserRequestModel requestModel)
+        public bool CreateUser(NewUserRequestModel request)
         {
             using (var con = new SqlConnection(_connectionString))
             {
@@ -80,10 +80,10 @@
 
                 var parameters = new
                 {
-                    Username = requestModel.Username,
-                    Password = requestModel.Password,
-                    Email = requestModel.Email,
-                    Name = requestModel.Name,
+                    Username = request.Username,
+                    Password = request.Password,
+                    Email = request.Email,
+                    Name = request.Name,
                 };
 
                 var insertedRoles = con.Execute(query, parameters);
@@ -111,7 +111,7 @@
             }
         }
 
-        public bool ChangeUserRole(ChangeUserRoleRequestModel requestModel)
+        public bool ChangeUserRole(ChangeUserRoleRequestModel request)
         {
             using (var con = new SqlConnection(_connectionString))
             {
@@ -120,8 +120,8 @@
 
                 var parameters = new
                 {
-                    RoleId = requestModel.RoleId,
-                    UserId = requestModel.UserId
+                    RoleId = request.RoleId,
+                    UserId = request.UserId
                 };
 
                 var affectedRows = con.Execute(query, parameters);
@@ -130,6 +130,24 @@
             }
         }
 
+        public bool ChangeUsername(ChangeUsernameRequestModel request)
+        {
+            using (var con = new SqlConnection(_connectionString))
+            {
+                var query =
+                    "UPDATE Users SET Username = @Username WHERE Id = @UserId";
+
+                var parameters = new
+                {
+                    Username = request.Username,
+                    UserId = request.UserId
+                };
+
+                var affectedRows = con.Execute(query, parameters);
+
+                return affectedRows == 1;
+            }
+        }
 
         public bool DeactivateUser(int userId)
         {

@@ -97,11 +97,11 @@
             }
         }
 
-        public ResponseWithMessage ChangeUserRole(ChangeUserRoleRequestModel request)
+        public ResponseWithMessage ChangeUserRole(ChangeUserRoleRequestModel requestModel)
         {
             try
             {
-                var isUpdated = _userDal.ChangeUserRole(request);
+                var isUpdated = _userDal.ChangeUserRole(requestModel);
 
                 if (isUpdated)
                 {
@@ -118,27 +118,6 @@
             }         
         }
 
-
-        public ResponseWithMessage ChangeUsername(ChangeUsernameRequestModel request)
-        {
-            try
-            {
-                var isUpdated = _userDal.ChangeUsername(request);
-
-                if (isUpdated)
-                {
-                    return new ResponseWithMessage(HttpStatusCode.OK, "Username was was changed successfully!");
-                }
-                else
-                {
-                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't change username!");
-                }
-            }
-            catch (Exception ex)
-            {
-                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to change username. {ex.Message}");
-            }
-        }
         public ResponseWithMessage DeactivateUser(int userId)
         {
             try
