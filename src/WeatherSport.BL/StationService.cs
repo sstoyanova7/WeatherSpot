@@ -77,7 +77,6 @@
             }
         }
         
-        //TO DO: GetStationsByRegionId ?
         public IEnumerable<StationsResponseMoedl> GetStations(int? cityId = null)
         {
             if (cityId == null)

@@ -23,9 +23,9 @@
             userService = service;
         }
 
-        public string GenerateJSONWebToken(UserLoginRequestModel request)
+        public string GenerateJSONWebToken(UserLoginRequestModel request, out UserModel user)
         {
-            UserModel user = userService.GetUser(request);
+            user = userService.GetUser(request);
             if (user == null || !user.IsActive)
             {
                 throw new AccessViolationException("There is no active user with those credentials");

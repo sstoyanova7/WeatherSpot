@@ -69,18 +69,18 @@
             }
         }
 
-        public ResponseWithMessage ChangePassword(string newPassword)
+        public ResponseWithMessage ChangePassword(ChangePasswordRequestModel request)
         {
             try
             {
+                var newPassword = request.NewPassword;
                 if (!newPassword.IsPasswordValid())
                 {
                     return new ResponseWithMessage(HttpStatusCode.BadRequest, "Password is invalid!");
                 }
 
-                //TODO: get current userId
                 var hashedPassword = Crypto.Hash(newPassword);
-                var isUpdated = _userDal.ChangePassword(hashedPassword, 1);
+                var isUpdated = _userDal.ChangePassword(hashedPassword, request.UserId);
 
                 if (isUpdated)
                 {
