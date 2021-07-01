@@ -1,0 +1,12 @@
+.container {
+    max-width:1200px;
+}
+
+.grid-schema {
+    margin-top: 5rem;
+}
+
+.badge-button {
+    border: none;
+    padding: 0.5rem;
+}

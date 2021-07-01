@@ -10,6 +10,7 @@ export class UserService {
   private getUsersUrl: string = 'https://localhost:44379/api/User/getUsers';
   private registerUserUrl: string = 'https://localhost:44379/api/User/createNewUser';
   private loginUserUrl: string = 'https://localhost:44379/api/Authentication/sign-in';
+  private deactivateUserUrl: string = 'https://localhost:44379/api/User/deactivateUser';
 
   constructor(private http: HttpClient) { }
 
@@ -23,5 +24,9 @@ export class UserService {
 
   loginUser(user) {
     return this.http.post(this.loginUserUrl, user);
+  }
+
+  deactivateUser(id) {
+    return this.http.put(this.deactivateUserUrl, id);
   }
 }

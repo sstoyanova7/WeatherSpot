@@ -1,7 +1,7 @@
 <div class="container">
     <div class="profile-change-container">
         <div class="profile-change-items">
-            <div class="profile-change-item">
+            <div class="profile-change-item text-center">
                 <kendo-expansionpanel title="change username">
                     <p>current username: [username]</p>
                     <form (ngSubmit)="onChangeUsername()">
@@ -17,7 +17,7 @@
                 </kendo-expansionpanel>
             </div>
 
-            <div class="profile-change-item">
+            <div class="profile-change-item text-center">
                 <kendo-expansionpanel title="change password">
                     <form (ngSubmit)="onChangePassword()">
                         <div>
@@ -42,7 +42,7 @@
                     <div class="alert alert-danger text-center">
                         By clicking on the "deactivate button you will freeze your account until you activate it back.
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-3 text-center">
                         <button kendoButton [primary]="true" (click)="deactivateAccount()">Deactivate account</button>
                     </div>
                 </kendo-expansionpanel>

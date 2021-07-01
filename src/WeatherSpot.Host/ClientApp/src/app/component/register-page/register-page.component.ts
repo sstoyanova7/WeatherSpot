@@ -29,7 +29,7 @@ export class RegisterPageComponent implements OnInit {
       e.value.password);
 
     if (e.valid && this.validatePasswords) {
-      this.regService.registerUser(newUser).subscribe(res => {
+      this.regService.registerUser(newUser).subscribe((res: any) => {
         this.status = res.status;
         if (this.status === '200') {
           setTimeout(() => {
