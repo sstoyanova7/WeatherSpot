@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WeatherSport.BL\WeatherSpot.BL.csproj" />
+    <ProjectReference Include="..\WeatherSpot.BL\WeatherSpot.BL.csproj" />
     <ProjectReference Include="..\WeatherSpot.Models\WeatherSpot.Models.csproj" />
   </ItemGroup>
 

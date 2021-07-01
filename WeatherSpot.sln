@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.Models", "src\WeatherSpot.Models\WeatherSpot.Models.csproj", "{A4C461E7-2D60-40BA-8449-523A182975F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.BL", "src\WeatherSport.BL\WeatherSpot.BL.csproj", "{040FD3E5-6ABD-479A-8943-26BEB19FCC01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.BL", "src\WeatherSpot.BL\WeatherSpot.BL.csproj", "{040FD3E5-6ABD-479A-8943-26BEB19FCC01}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSpot.DataLayer", "src\WeatherSpot.DataLayer\WeatherSpot.DataLayer.csproj", "{2846E87E-61F6-4223-B918-DBE1FCB9E7E2}"
 EndProject
