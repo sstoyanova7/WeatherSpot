@@ -15,6 +15,10 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { UserService } from './services/user.service';
 import { ProfileComponent } from './component/profile/profile.component';
+import { AdminPanelComponent } from './component/admin-panel/admin-panel.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+
+
 
 
 
@@ -30,7 +34,8 @@ import { ProfileComponent } from './component/profile/profile.component';
     RegisterPageComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,15 +45,17 @@ import { ProfileComponent } from './component/profile/profile.component';
       // { path: '', component: LoginPageComponent, pathMatch: 'full' }, after login
       { path: 'login', component: LoginPageComponent },
       { path: 'register', component: RegisterPageComponent },
-      { path: 'profile', component: ProfileComponent}
-      
+      { path: 'profile', component: ProfileComponent },
+      { path: 'admin', component: AdminPanelComponent }
+
       // { path: '**', component: RegisterPageComponent } add 404 page
     ]),
     LayoutModule,
     BrowserAnimationsModule,
     ButtonsModule,
     InputsModule,
-    LabelModule
+    LabelModule,
+    GridModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
