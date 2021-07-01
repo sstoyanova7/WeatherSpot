@@ -7,7 +7,7 @@
     using WeatherSpot.Models.ResponseModels;
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]/")]
     public class StationController : ControllerBase
     {
         private readonly IStationService _stationService;
@@ -17,14 +17,14 @@
         }
 
         [HttpGet]
-        [Route("api/getRegions")]
+        [Route("getRegions")]
         public IEnumerable<RegionModel> GetRegions()
         {
             return _stationService.GetRegions();
         }
 
         [HttpPost]
-        [Route("api/addNewRegion")]
+        [Route("addNewRegion")]
         public ResponseWithMessage AddNewRegion([FromBody] string name)
         {
             return _stationService.AddNewRegion(name);
@@ -33,14 +33,14 @@
         //TODO
         //queryparams
         [HttpGet]
-        [Route("api/getCities")]
+        [Route("getCities")]
         public IEnumerable<CityModel> GetCities()
         {
             return _stationService.GetCities();
         }
 
         [HttpPost]
-        [Route("api/addNewCity")]
+        [Route("addNewCity")]
         public ResponseWithMessage AddNewCity([FromBody] NewCityRequestModel request)
         {
             return _stationService.AddNewCity(request);
@@ -49,14 +49,14 @@
         //TODO
         //queryparams
         [HttpGet]
-        [Route("api/getStations")]
+        [Route("getStations")]
         public IEnumerable<StationsResponseMoedl> GetStations()
         {
             return _stationService.GetStations();
         }
 
         [HttpPost]
-        [Route("api/addNewStation")]
+        [Route("addNewStation")]
         public ResponseWithMessage AddNewStation([FromBody] NewStationRequestModel request)
         {
             return _stationService.AddNewStation(request);
