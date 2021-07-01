@@ -77,5 +77,13 @@
             return _userService.DeactivateUser(userId);
           
         }
+
+        [HttpPut]
+        [Route("activateUser")]
+        public ResponseWithMessage ActivateUser([FromBody] int userId)
+        {
+            return _userService.ActivateUser(userId);
+
+        }
     }
 }
