@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,20 +9,36 @@ import { UserService } from 'src/app/services/user.service';
 export class AdminPanelComponent implements OnInit {
 
   public users: any;
-  constructor(private service: UserService, private _cdr: ChangeDetectorRef) { }
+  public roleData: Array<string> = ['super admin', 'admin', 'normal'];
+
+  constructor(private service: UserService) { }
 
   ngOnInit() {
     this.service.getUsers().subscribe((res: any) => {
       this.users = res;
-      console.log(this.users);
     });
   }
 
-  deactivateUser(id) {
-    this.service.deactivateUser(id).subscribe(res => {
-      console.log(res);
+  changeUserRole(newRole, userId) {
+    /**
+     * samo super admin moje da smenq rolq, normalen admin moje da pipa po stanciite
+     */
+    let changeRole = {
+      userId: userId,
+      roleId: this.roleData.indexOf(newRole) + 1
+    };
+    this.service.changeUserRole(changeRole).subscribe(() => {
       this.ngOnInit();
     });
   }
 
+  deactivateUser(id) {
+    this.service.deactivateUser(id).subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+
+  activateUser(id) {
+
+  }
 }

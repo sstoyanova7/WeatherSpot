@@ -1,17 +1,26 @@
 <div class="container">
     <div class="grid-schema">
         <kendo-grid [data]="users" [height]="410">
-            <kendo-grid-column #username field="username" title="username" width="150"></kendo-grid-column>
-            <kendo-grid-column field="name" title="name" width="150"></kendo-grid-column>
-            <kendo-grid-column field="email" title="email" width="150"></kendo-grid-column>
-            <kendo-grid-column field="role" title="role" width="100"></kendo-grid-column>
-            <kendo-grid-column field="status" title="status" width="100">
+            <kendo-grid-column class="text-center" field="username" title="username" width="120"></kendo-grid-column>
+            <kendo-grid-column class="text-center" field="name" title="name" width="150"></kendo-grid-column>
+            <kendo-grid-column class="text-center" field="email" title="email" width="170"></kendo-grid-column>
+            <kendo-grid-column class="text-center" filed="roleId" title="role" width="200">
+
                 <ng-template kendoGridCellTemplate let-dataItem>
-                    <div *ngIf="dataItem.isActive === true" class="text-center">
-                        <button class="badge badge-success badge-button" (click)="deactivateUser(dataItem.id)">Disable</button>
+                    <kendo-dropdownlist [data]="roleData" [value]="roleData[dataItem.roleId - 1]"
+                        (selectionChange)="changeUserRole($event, dataItem.id)"></kendo-dropdownlist>
+                </ng-template>
+
+            </kendo-grid-column>
+            <kendo-grid-column class="text-center" field="status" title="status" width="100">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div *ngIf="dataItem.isActive === true">
+                        <button class="badge badge-success badge-button" (click)="deactivateUser(dataItem.id)">Disable
+                        </button>
                     </div>
-                    <div *ngIf="dataItem.isActive === false" class="text-center">
-                        <button class="badge badge-danger badge-button" (click)="deactivateUser(dataItem.id)">Enable</button>
+                    <div *ngIf="dataItem.isActive === false">
+                        <button class="badge badge-danger badge-button" (click)="activateUser(dataItem.id)">Enable
+                        </button>
                     </div>
                 </ng-template>
             </kendo-grid-column>
