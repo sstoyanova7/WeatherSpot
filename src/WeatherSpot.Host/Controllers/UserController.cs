@@ -63,6 +63,14 @@
         }
 
         [HttpPut]
+        [Route("changeUsername")]
+        public ResponseWithMessage ChangeUsername([FromBody] ChangeUsernameRequestModel request)
+        {
+            return _userService.ChangeUsername(request);
+
+        }
+
+        [HttpPut]
         [Route("deactivateUser")]
         public ResponseWithMessage DeactivateUser([FromBody] int userId)
         {
