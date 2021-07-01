@@ -119,7 +119,7 @@
         }
 
 
-        public ResponseWithMessage ChangeUserName(ChangeUsernameRequestModel request)
+        public ResponseWithMessage ChangeUsername(ChangeUsernameRequestModel request)
         {
             try
             {
