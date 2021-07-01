@@ -39,6 +39,8 @@ export class AdminPanelComponent implements OnInit {
   }
 
   activateUser(id) {
-
-  }
+    this.service.activateUser(id).subscribe(() => {
+      this.ngOnInit();      
+    })
+    }
 }
