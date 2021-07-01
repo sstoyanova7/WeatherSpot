@@ -14,13 +14,11 @@
     [Route("api/[controller]/")]
     public class AuthenticationController : ControllerBase
     {
-        private IConfiguration _config;
         private readonly IJWTService _jWTService;
         private readonly IUserService _userService;
 
-        public AuthenticationController(IConfiguration config, IJWTService service, IUserService userService)
+        public AuthenticationController(IJWTService service, IUserService userService)
         {
-            this._config = config;
             _jWTService = service;
             _userService = userService;
         }
@@ -32,15 +30,14 @@
         {
             try
             {
-                string jwt = _jWTService.GenerateJSONWebToken(login);
+                string jwt = _jWTService.GenerateJSONWebToken(login, out var user);
 
                 CookieOptions cookieOptions = new CookieOptions();
                 cookieOptions.Expires = DateTime.Now.AddMinutes(120);
 
                 Response.Cookies.Append("Auth-Tst", jwt);
 
-                IActionResult response = Ok();
-                return response;
+                return Ok(user);
             }
             catch (AccessViolationException e)
             {

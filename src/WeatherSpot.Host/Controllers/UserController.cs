@@ -3,7 +3,6 @@
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using WeatherSpot.BL;
     using WeatherSpot.Models.RequestModels;
     using WeatherSpot.Models.ResponseModels;
@@ -50,9 +49,9 @@
 
         [HttpPut]
         [Route("changePassword")]        
-        public ResponseWithMessage ChangePassword([FromBody] string password)
+        public ResponseWithMessage ChangePassword([FromBody] ChangePasswordRequestModel request)
         {
-            return _userService.ChangePassword(password);
+            return _userService.ChangePassword(request);
         }
 
         [HttpPut]

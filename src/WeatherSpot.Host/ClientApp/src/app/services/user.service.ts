@@ -7,12 +7,12 @@ import { Injectable } from '@angular/core';
 export class UserService {
 
 
-  private getUsersUrl: string = 'https://localhost:44379/api/User/getUsers';
-  private registerUserUrl: string = 'https://localhost:44379/api/User/createNewUser';
-  private loginUserUrl: string = 'https://localhost:44379/api/Authentication/sign-in';
-  private deactivateUserUrl: string = 'https://localhost:44379/api/User/deactivateUser';
-  private changeUserRoleUrl: string = "https://localhost:44379/api/User/changeUserRole";
-  private activateUserUrl: string = 'https://localhost:44379/api/User/activateUser';
+  private getUsersUrl: string = '/api/User/getUsers';
+  private registerUserUrl: string = '/api/User/createNewUser';
+  private loginUserUrl: string = '/api/Authentication/sign-in';
+  private deactivateUserUrl: string = '/api/User/deactivateUser';
+  private changeUserRoleUrl: string = "/api/User/changeUserRole";
+  private activateUserUrl: string = '/api/User/activateUser';
 
   constructor(private http: HttpClient) { }
 

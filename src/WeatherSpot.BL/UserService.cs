@@ -29,7 +29,7 @@
             return _userDal.GetUser(username);
         }
 
-        public  IEnumerable<StationsResponseMoedl> GetRoles()
+        public IEnumerable<StationsResponseMoedl> GetRoles()
         {
             return _userDal.GetRoles();
         }
@@ -63,24 +63,24 @@
                     return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't create user!");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to create user. {ex.Message}");
             }
         }
 
-        public ResponseWithMessage ChangePassword(string newPassword)
+        public ResponseWithMessage ChangePassword(ChangePasswordRequestModel request)
         {
             try
             {
+                var newPassword = request.NewPassword;
                 if (!newPassword.IsPasswordValid())
                 {
                     return new ResponseWithMessage(HttpStatusCode.BadRequest, "Password is invalid!");
                 }
 
-                //TODO: get current userId
                 var hashedPassword = Crypto.Hash(newPassword);
-                var isUpdated = _userDal.ChangePassword(hashedPassword, 1);
+                var isUpdated = _userDal.ChangePassword(hashedPassword, request.UserId);
 
                 if (isUpdated)
                 {
@@ -97,11 +97,11 @@
             }
         }
 
-        public ResponseWithMessage ChangeUserRole(ChangeUserRoleRequestModel requestModel)
+        public ResponseWithMessage ChangeUserRole(ChangeUserRoleRequestModel request)
         {
             try
             {
-                var isUpdated = _userDal.ChangeUserRole(requestModel);
+                var isUpdated = _userDal.ChangeUserRole(request);
 
                 if (isUpdated)
                 {
@@ -115,9 +115,30 @@
             catch (Exception ex)
             {
                 return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to update user role. {ex.Message}");
-            }         
+            }
         }
 
+
+        public ResponseWithMessage ChangeUsername(ChangeUsernameRequestModel request)
+        {
+            try
+            {
+                var isUpdated = _userDal.ChangeUsername(request);
+
+                if (isUpdated)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "Username was was changed successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't change username!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to change username. {ex.Message}");
+            }
+        }
         public ResponseWithMessage DeactivateUser(int userId)
         {
             try
@@ -139,26 +160,47 @@
             }
         }
 
+        public ResponseWithMessage ActivateUser(int userId)
+        {
+            try
+            {
+                var isDeactivated = _userDal.ActivateUser(userId);
+
+                if (isDeactivated)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "User was activated successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't activat user!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to activate user. {ex.Message}");
+            }
+        }
+
         private string ValidateUser(NewUserRequestModel user)
         {
             var list = new List<string>();
 
-            if(!user.Username.IsUsernameValid())
+            if (!user.Username.IsUsernameValid())
             {
                 list.Add("Username is invald.");
             }
 
-            if(_userDal.GetUser(user.Username) != null)
+            if (_userDal.GetUser(user.Username) != null)
             {
                 list.Add("User with that username already exists.");
-            }            
+            }
 
-            if(!user.Password.IsPasswordValid())
+            if (!user.Password.IsPasswordValid())
             {
                 list.Add("Password is invalid.");
             }
 
-            if(!user.Name.IsNameValid())
+            if (!user.Name.IsNameValid())
             {
                 list.Add("Name is invalid.");
             }

@@ -23,9 +23,9 @@
             userService = service;
         }
 
-        public string GenerateJSONWebToken(UserLoginRequestModel requestModel)
+        public string GenerateJSONWebToken(UserLoginRequestModel request, out UserModel user)
         {
-            UserModel user = userService.GetUser(requestModel);
+            user = userService.GetUser(request);
             if (user == null || !user.IsActive)
             {
                 throw new AccessViolationException("There is no active user with those credentials");
@@ -35,7 +35,7 @@
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Sub, requestModel.Username),
+                new Claim(JwtRegisteredClaimNames.Sub, request.Username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
