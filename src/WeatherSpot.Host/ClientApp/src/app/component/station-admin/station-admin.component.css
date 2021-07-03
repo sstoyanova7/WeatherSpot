@@ -1,0 +1,48 @@
+
+
+.bg-light-dark {
+    background-color: #ebebeb;
+}
+.container {
+    max-width:1200px;
+    margin: 0 auto;
+}
+
+.register-container {
+    margin-top: 5rem;
+    height:500px;
+    display:flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input-container div {
+    flex: 1;
+    flex-basis: 33%;
+}
+
+.input-form {
+    margin-bottom:1rem;
+}
+
+.button-form > button {
+    margin-top:0.75rem;
+    width:200px;
+    font-size: 18px;
+}
+
+input {
+    border:none;
+    padding:0.35rem;
+}
+
+input:focus {
+    outline: none;
+}
