@@ -24,6 +24,7 @@ export class LoginPageComponent implements OnInit {
     if (e.valid) {
       this.service.loginUser(user).subscribe(response => {
         console.log(response);
+        console.log(document.cookie);
       });
 
 

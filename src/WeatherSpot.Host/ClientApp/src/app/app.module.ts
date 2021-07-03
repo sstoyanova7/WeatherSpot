@@ -18,6 +18,8 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { AdminPanelComponent } from './component/admin-panel/admin-panel.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { UserStationComponent } from './component/user-station/user-station.component';
+import { StationAdminComponent } from './component/station-admin/station-admin.component';
 
 
 
@@ -37,7 +39,9 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     LoginPageComponent,
     RegisterPageComponent,
     ProfileComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UserStationComponent,
+    StationAdminComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,7 +52,9 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
       { path: 'login', component: LoginPageComponent },
       { path: 'register', component: RegisterPageComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'admin', component: AdminPanelComponent }
+      { path: 'user-panel', component: AdminPanelComponent },
+      { path: 'station', component: UserStationComponent },
+      { path: 'station-panel', component: StationAdminComponent }
 
       // { path: '**', component: RegisterPageComponent } add 404 page
     ]),

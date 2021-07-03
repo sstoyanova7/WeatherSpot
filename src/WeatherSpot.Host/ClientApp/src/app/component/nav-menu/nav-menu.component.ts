@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,6 +9,9 @@ import { Component } from '@angular/core';
 export class NavMenuComponent {
   isExpanded = false;
 
+  constructor(private service: UserService) {
+
+  }
   collapse() {
     this.isExpanded = false;
   }
@@ -15,4 +19,12 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
+  logout() {
+    this.service.logout().subscribe(res => {
+      console.log(res);
+      
+    })
+  }
+
 }

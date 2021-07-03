@@ -13,6 +13,7 @@ export class UserService {
   private deactivateUserUrl: string = '/api/User/deactivateUser';
   private changeUserRoleUrl: string = "/api/User/changeUserRole";
   private activateUserUrl: string = '/api/User/activateUser';
+  private logoutUserUrl: string = '/api/Authentication/logout';
 
   constructor(private http: HttpClient) { }
 
@@ -40,4 +41,7 @@ export class UserService {
     return this.http.put(this.activateUserUrl, id);
   }
 
+  logout() {
+    return this.http.post(this.logoutUserUrl, {});
+  }
 }
