@@ -11,6 +11,7 @@
     public class StationController : ControllerBase
     {
         private readonly IStationService _stationService;
+
         public StationController(IStationService stationService)
         {
             _stationService = stationService;
@@ -18,9 +19,9 @@
 
         [HttpGet]
         [Route("getRegions")]
-        public IEnumerable<RegionModel> GetRegions()
+        public IEnumerable<RegionModel> GetRegions(int regionId)
         {
-            return _stationService.GetRegions();
+            return _stationService.GetRegions(regionId);
         }
 
         [HttpPost]
@@ -30,13 +31,18 @@
             return _stationService.AddNewRegion(name);
         }
 
-        //TODO
-        //queryparams
+        [HttpDelete]
+        [Route("deleteRegion")]
+        public ResponseWithMessage DeleteRegion(int regionId)
+        {
+            return _stationService.DeleteRegion(regionId);
+        }
+
         [HttpGet]
         [Route("getCities")]
-        public IEnumerable<CityModel> GetCities()
+        public IEnumerable<CityModel> GetCities(int regionId, int cityId)
         {
-            return _stationService.GetCities();
+            return _stationService.GetCities(regionId, cityId);
         }
 
         [HttpPost]
@@ -46,13 +52,18 @@
             return _stationService.AddNewCity(request);
         }
 
-        //TODO
-        //queryparams
+        [HttpDelete]
+        [Route("deleteCity")]
+        public ResponseWithMessage DeleteCity(int cityId)
+        {
+            return _stationService.DeleteCity(cityId);
+        }
+
         [HttpGet]
         [Route("getStations")]
-        public IEnumerable<StationsResponseMoedl> GetStations()
+        public IEnumerable<StationsResponseMoedl> GetStations(int regionId, int cityId, int stationId)
         {
-            return _stationService.GetStations();
+            return _stationService.GetStations(regionId, cityId, stationId);
         }
 
         [HttpPost]
@@ -60,6 +71,13 @@
         public ResponseWithMessage AddNewStation([FromBody] NewStationRequestModel request)
         {
             return _stationService.AddNewStation(request);
+        }
+
+        [HttpDelete]
+        [Route("deleteStation")]
+        public ResponseWithMessage DeleteStation(int stationId)
+        {
+            return _stationService.DeleteStation(stationId);
         }
     }
 }

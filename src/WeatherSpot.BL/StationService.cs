@@ -16,15 +16,18 @@
             _stationDal = stationDal;
         }
 
-        public IEnumerable<RegionModel> GetRegions()
+        public IEnumerable<RegionModel> GetRegions(int regionId)
         {
+            if(regionId != 0)
+            {
+                return _stationDal.GetRegion(regionId);
+            }
+
             return _stationDal.GetRegions();
         }
 
         public ResponseWithMessage AddNewRegion(string name)
         {
-            //TODO
-            //Validate
             try
             {
                 var isAdded = _stationDal.AddNewRegion(name);
@@ -43,22 +46,44 @@
             }
         }
 
-        public IEnumerable<CityModel> GetCities(int? regionId = null)
+        public ResponseWithMessage DeleteRegion(int regionId)
         {
-            if (regionId == null)
+            try
             {
-                return _stationDal.GetCities();
+                var isDeleted = _stationDal.DeleteRegion(regionId);
+                if (isDeleted)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "The region was deleted successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't delete region!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to delete region. {ex.Message}");
+            }
+        }
+
+        public IEnumerable<CityModel> GetCities(int regionId, int cityId)
+        {
+            if(cityId != 0)
+            {
+                return _stationDal.GetCity(cityId);
+            }
+            if (regionId != 0)
+            {
+                return _stationDal.GetCitiesByRegionId(regionId);
             }
             else
             {
-                return _stationDal.GetCitiesByRegionId((int)regionId);
+                return _stationDal.GetCities();
             }
         }
 
         public ResponseWithMessage AddNewCity(NewCityRequestModel request)
         {
-            //TODO
-            //Validate
             try
             {
                 var isAdded = _stationDal.AddNewCity(request);
@@ -77,22 +102,50 @@
             }
         }
 
-        public IEnumerable<StationsResponseMoedl> GetStations(int? cityId = null)
+        public ResponseWithMessage DeleteCity(int cityId)
         {
-            if (cityId == null)
+            try
             {
-                return _stationDal.GetStations();
+                var isDeleted = _stationDal.DeleteCity(cityId);
+                if (isDeleted)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "The city was deleted successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't delete city!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return _stationDal.GetStationsByCityId((int)cityId);
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to delete city. {ex.Message}");
             }
+        }
+
+        public IEnumerable<StationsResponseMoedl> GetStations(int regionId, int cityId, int stationId)
+        {
+            if(stationId != 0)
+            {
+                return _stationDal.GetStation(stationId);                
+            }
+
+            if (cityId != 0)
+            {
+                return _stationDal.GetStationsByCityId(cityId);                
+            }
+
+            if (regionId != 0)
+            {
+                return _stationDal.GetStationsByRegionId(regionId);
+            }
+
+            return _stationDal.GetStations();
+
+
         }
 
         public ResponseWithMessage AddNewStation(NewStationRequestModel request)
         {
-            //TODO
-            //Validate
             try
             {
                 var isAdded = _stationDal.AddNewStation(request);
@@ -108,6 +161,26 @@
             catch (Exception ex)
             {
                 return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to add new station. {ex.Message}");
+            }
+        }
+
+        public ResponseWithMessage DeleteStation(int stationId)
+        {
+            try
+            {
+                var isDeleted = _stationDal.DeleteStation(stationId);
+                if (isDeleted)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "The station was deleted successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't delete station!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to delete station. {ex.Message}");
             }
         }
     }
