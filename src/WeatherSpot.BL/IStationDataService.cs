@@ -8,7 +8,7 @@ namespace WeatherSpot.BL
     {
         public IEnumerable<StationData> GetStationData(int regionId, int cityId, int month, int year);
         public ResponseWithMessage AddStationData(StationDataRequestModel request);
-        public ResponseWithMessage UpdateStationData(StationDataRequestModel request);
+        public ResponseWithMessage UpdateStationData(UpdateStationDataRequestModel request);
         public ResponseWithMessage DeleteStationData(int stationDataId);    
     }
 }

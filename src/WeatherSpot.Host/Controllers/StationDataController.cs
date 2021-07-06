@@ -33,7 +33,7 @@
         
         [HttpPost]
         [Route("updateStationData")]
-        public ResponseWithMessage UpdateStationData([FromBody] StationDataRequestModel request)
+        public ResponseWithMessage UpdateStationData([FromBody] UpdateStationDataRequestModel request)
         {
             return _stationDataService.UpdateStationData(request);
         }

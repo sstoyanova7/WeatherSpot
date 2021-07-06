@@ -141,5 +141,92 @@ VALUES(@StationDataId, @DaysRainOver1mm, @DaysRainUnder1mm, @DaysWindOver14ms, @
                 return new ResponseWithMessage(HttpStatusCode.InternalServerError, "An error occured");
             }
         }
-	}
+
+        public ResponseWithMessage UpdateStationData(UpdateStationDataRequestModel request)
+        {
+            try
+            {
+                using (var con = new SqlConnection(_connectionString))
+                {
+                    var query =
+                        @"UPDATE StationData
+SET Weight = @Weight,
+Where Id = @StationDataId
+
+UPDATE TemperatureData
+SET Average = @TemperatureAverage,
+Delta = @TemperatureDelta,
+Max = @TemperatureMax,
+Min = @TemperatureMin,
+DayMax = @TemperatureDayMax,
+DayMin = @TemperatureDayMin
+Where StationDataId = @StationDataId
+
+UPDATE RainData
+SET Total = @RainTotal,
+QQN = @RainQQn,
+Max = @RainMax,
+DayMax = @RainDayMax
+Where StationDataId = @StationDataId
+
+UPDATE StatisticsData
+SET DaysRainOver1mm = @DaysRainOver1mm,
+DaysRainUnder1mm = @DaysRainUnder1mm,
+DaysWindOver14ms = @DaysWindOver14ms,
+DaysThunderbolts = @DaysThunderbolts
+Where StationDataId = @StationDataId";
+
+                    var parameters = new
+                    {
+                        StationId = request.StationDataId,
+                        Weight = request.Weight,
+                        TemperatureAverage = request.TemperatureAverage,
+                        TemperatureDelta = request.TemperatureDelta,
+                        TemperatureMax = request.TemperatureMax,
+                        TemperatureMin = request.TemperatureMin,
+                        TemperatureDayMax = request.TemperatureDayMax,
+                        TemperatureDayMin = request.TemperatureDayMin,
+                        RainTotal = request.RainTotal,
+                        RainQQn = request.RainQQn,
+                        RainMax = request.RainMax,
+                        RainDayMax = request.RainDayMax,
+                        DaysRainOver1mm = request.DaysRainOver1mm,
+                        DaysRainUnder1mm = request.DaysRainUnder1mm,
+                        DaysWindOver14ms = request.DaysWindOver14ms,
+                        DaysThunderbolts = request.DaysThunderbolts,
+                    };
+
+                    con.Query<int>(query, parameters);
+
+                    return new ResponseWithMessage(HttpStatusCode.OK, "Station data updated successfully");
+                }
+                 
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, "An error occured");
+            }
+        }
+
+        public bool DeleteStationData(int stationDataId)
+        {
+            using (var con = new SqlConnection(_connectionString))
+            {
+                var query =
+                    @"DELETE FROM TemperatureData Where StationDataId = @StationDataId
+DELETE FROM RainData Where StationDataId = @StationDataId
+DELETE FROM StatisticsData Where StationDataId = @StationDataId
+DELETE FROM StationData Where Id = @StationDataId";
+
+                var parameters = new
+                {
+                    StationDataId = stationDataId
+                };
+
+                var deletedRows = con.Execute(query, parameters);
+
+                return deletedRows > 0;
+            }
+        }
+    }
 }
