@@ -64,7 +64,7 @@ WHERE Month=@Month AND Year=@Year AND CityId =@CityId";
             }
         }
 
-		public ResponseWithMessage AddStationData(NewStationDataRequestModel request)
+		public ResponseWithMessage AddStationData(StationDataRequestModel request)
 		{
             try
             {

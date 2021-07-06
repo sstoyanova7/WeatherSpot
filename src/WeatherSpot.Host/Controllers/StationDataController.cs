@@ -26,14 +26,14 @@
 
         [HttpPost]
         [Route("addStationData")]
-        public ResponseWithMessage AddStationData([FromBody] NewStationDataRequestModel request)
+        public ResponseWithMessage AddStationData([FromBody] StationDataRequestModel request)
         {
             return _stationDataService.AddStationData(request);
         }
         
         [HttpPost]
         [Route("updateStationData")]
-        public ResponseWithMessage UpdateStationData([FromBody] UpdateStationDataRequestModel request)
+        public ResponseWithMessage UpdateStationData([FromBody] StationDataRequestModel request)
         {
             return _stationDataService.UpdateStationData(request);
         }

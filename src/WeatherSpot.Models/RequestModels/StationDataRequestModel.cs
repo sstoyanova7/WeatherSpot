@@ -1,6 +1,6 @@
 ﻿namespace WeatherSpot.Models.RequestModels
 {
-    public class NewStationDataRequestModel
+    public class StationDataRequestModel
     {
         public int StationId { get; set; }
         public int Month { get; set; }
@@ -20,6 +20,5 @@
         public int DaysRainUnder1mm { get; set; }
         public int DaysWindOver14ms { get; set; }
         public int DaysThunderbolts { get; set; }
-
     }
 }

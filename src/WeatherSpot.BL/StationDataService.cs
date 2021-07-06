@@ -27,13 +27,13 @@ namespace WeatherSpot.BL
             return stationsDataFromDb.Select(s => _mapper.Map<StationData>(s));
         }
 
-        public ResponseWithMessage AddStationData(NewStationDataRequestModel request)
+        public ResponseWithMessage AddStationData(StationDataRequestModel request)
         {
             return _stationDataDal.AddStationData(request);
             //todo recalculate weights!
         }
 
-        public ResponseWithMessage UpdateStationData(UpdateStationDataRequestModel request)
+        public ResponseWithMessage UpdateStationData(StationDataRequestModel request)
         {
             //todo recalculate weights!
             throw new NotImplementedException();
