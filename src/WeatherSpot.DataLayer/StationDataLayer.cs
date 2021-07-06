@@ -165,7 +165,7 @@ DELETE FROM Cities WHERE Id = @CityId";
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    "DELETE FROM Stations WHERE Id=@StationId";
+                    "SELECT * FROM Stations WHERE Id=@StationId";
 
                 var parameters = new
                 {

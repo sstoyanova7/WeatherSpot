@@ -49,7 +49,7 @@ INNER JOIN TemperatureData td ON s.Id = td.StationDataId
 INNER JOIN RainData rd ON s.Id = rd.StationDataId
 INNER JOIN StatisticsData sd ON s.Id = sd.StationDataId
 INNER JOIN Stations st ON s.StationId = st.Id
-INNER JOIN Cities c ON s.StationId = st.CityId
+INNER JOIN Cities c ON st.CityId = c.Id
 WHERE Month=@Month AND Year=@Year AND CityId =@CityId";
 
 
@@ -101,9 +101,11 @@ VALUES(@StationDataId, @Average, @Delta, @Max, @Min, @DayMax, @DayMin)";
                         DayMin = request.TemperatureDayMin
                     };
 
+                    con.Query(query, temperatureParameters);
+
                     query =
-   @"INSERT INTO RainData(Total, QQN, Max, DayMax)
-VALUES(@Total, @QQN, @Max, @DayMax)";
+   @"INSERT INTO RainData(StationDataId, Total, QQN, Max, DayMax)
+VALUES(@StationDataId, @Total, @QQN, @Max, @DayMax)";
 
                     var rainParameters = new
                     {
@@ -117,7 +119,7 @@ VALUES(@Total, @QQN, @Max, @DayMax)";
                     con.Query(query, rainParameters);
 
                     query =
-@"DaysRainOver1mm, DaysRainUnder1mm, DaysWindOver14ms, DaysThunderbolts)
+@"INSERT INTO StatisticsData(StationDataId, DaysRainOver1mm, DaysRainUnder1mm, DaysWindOver14ms, DaysThunderbolts)
 VALUES(@StationDataId, @DaysRainOver1mm, @DaysRainUnder1mm, @DaysWindOver14ms, @DaysThunderbolts)";
 
                     var statisticsParameters = new
