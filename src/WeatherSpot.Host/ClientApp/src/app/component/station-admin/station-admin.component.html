@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="register-container">
+        <kendo-card [width]="'1000px'" class="k-vbox bg-light-dark">
+            <kendo-card-header class="text-center">
+                <h3>Add Station</h3>
+            </kendo-card-header>
+            <kendo-card-body>
+                <div class="form-container">
+                    <form #templateForm="ngForm" (ngSubmit)="onSubmit(templateForm)">
+                        <div class="input-container">
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Station Name">
+                                    <input required ngModel #stationName="ngModel" type="text" name="stationName" />
+                                    <!-- <div *ngIf="usernameInput.touched && !usernameInput.valid">
+                                    <kendo-formerror *ngIf="usernameInput.errors.required">Username is requred.</kendo-formerror>
+                                </div> -->
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Region">
+                                    <input required ngModel #region="ngModel" type="text" name="region" />
+                                    <!-- <div *ngIf="passwordInput.touched && !passwordInput.valid">
+                                    <kendo-formerror *ngIf="passwordInput.errors.required">Password is requred.</kendo-formerror>
+                                </div> -->
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter City">
+                                    <input required ngModel #city="ngModel" type="text" name="city" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter T avg.">
+                                    <input required ngModel #tAvg="ngModel" type="text" name="tAvg" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Tδ">
+                                    <input required ngModel #temperatureDeviation="ngModel" type="text"
+                                        name="temperatureDeviation" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Tmax">
+                                    <input required ngModel #tMax="ngModel" type="text" name="tMax" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Date">
+                                    <input required ngModel #dateOne="ngModel" type="text" name="dateOne" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Tmin">
+                                    <input required ngModel #tMin="ngModel" type="text" name="tMin" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Date">
+                                    <input required ngModel #dateTwo="ngModel" type="text" name="dateTwo" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Amount">
+                                    <input required ngModel #amount="ngModel" type="text" name="amount" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Q/Qn">
+                                    <input required ngModel #percentT="ngModel" type="text" name="percentT" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Maximum Rain">
+                                    <input required ngModel #maxRain="ngModel" type="text" name="maxRain" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Date">
+                                    <input required ngModel #dateThree="ngModel" type="text" name="dateThree" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Rain(mm) >= 1">
+                                    <input required ngModel #rainBelow="ngModel" type="text" name="rainBelow" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Rain(mm) >= 10">
+                                    <input required ngModel #rainAbove="ngModel" type="text" name="rainAbove" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Wind >= 14 m/s">
+                                    <input required ngModel #wind="ngModel" type="text" name="wind" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Thunders">
+                                    <input required ngModel #thunders="ngModel" type="text" name="thunders" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="button-form">
+                                <button kendoButton [primary]="true">Add station</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </kendo-card-body>
+        </kendo-card>
+    </div>
+</div>
