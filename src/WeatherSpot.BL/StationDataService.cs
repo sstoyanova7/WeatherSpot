@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using WeatherSpot.DataLayer;
 using WeatherSpot.Models.RequestModels;
 using WeatherSpot.Models.ResponseModels;
@@ -33,16 +34,32 @@ namespace WeatherSpot.BL
             //todo recalculate weights!
         }
 
-        public ResponseWithMessage UpdateStationData(StationDataRequestModel request)
+        public ResponseWithMessage UpdateStationData(UpdateStationDataRequestModel request)
         {
             //todo recalculate weights!
-            throw new NotImplementedException();
+            return _stationDataDal.UpdateStationData(request);
         }
 
         public ResponseWithMessage DeleteStationData(int stationDataId)
         {
             //todo recalculate weights!
-            throw new NotImplementedException();
+
+            try
+            {
+                var isDeleted = _stationDataDal.DeleteStationData(stationDataId);
+                if (isDeleted)
+                {
+                    return new ResponseWithMessage(HttpStatusCode.OK, "Station data was deleted successfully!");
+                }
+                else
+                {
+                    return new ResponseWithMessage(HttpStatusCode.InternalServerError, "Couldn't delete station data!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseWithMessage(HttpStatusCode.InternalServerError, $"An error occured while trying to delete station data. {ex.Message}");
+            }
         }
     }
 }
