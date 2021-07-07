@@ -45,7 +45,7 @@ export class UserStationComponent implements OnInit {
 
   onSubmit(e) {
     console.log(e);
-    this.stationData.getCityData(this.selectedRegion.id, this.selectedCity.id, e.value.month, e.value.year).subscribe((res: any) => {
+    this.stationData.getCityData(this.selectedCity.id, e.value.month, e.value.year).subscribe((res: any) => {
       console.log(res);
       this.data = res;
       this.showGrid = true;
