@@ -22,7 +22,7 @@ namespace WeatherSpot.BL
             _stationDataDal = stationDataDal;
         }
 
-        public IEnumerable<StationData> GetStationData(int regionId, int cityId, int month, int year)
+        public IEnumerable<StationData> GetStationData(int cityId, int month, int year)
         {
             var stationsDataFromDb = _stationDataDal.GetStationsData(cityId, month, year);
             return stationsDataFromDb.Select(s => _mapper.Map<StationData>(s));
