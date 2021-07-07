@@ -35,7 +35,7 @@ namespace WeatherSpot.Models.RequestModels.AutoMapper
                 .ForMember(dest => dest.StatisticsData, act => act.MapFrom(src => new StatisticsData
                 {
                     DaysRainOver1mm = src.DaysRainOver1mm,
-                    DaysRainUnder1mm = src.DaysRainUnder1mm,
+                    DaysRainOver10mm = src.DaysRainOver1mm,
                     DaysWindOver14ms = src.DaysWindOver14ms,
                     DaysThunderbolts = src.DaysThunderbolts
                 }));

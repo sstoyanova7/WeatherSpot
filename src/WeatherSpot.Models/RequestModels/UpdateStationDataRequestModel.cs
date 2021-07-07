@@ -15,7 +15,7 @@
         public int RainMax { get; set; }
         public int RainDayMax { get; set; }
         public int DaysRainOver1mm { get; set; }
-        public int DaysRainUnder1mm { get; set; }
+        public int DaysRainOver10mm { get; set; }
         public int DaysWindOver14ms { get; set; }
         public int DaysThunderbolts { get; set; }
     }
