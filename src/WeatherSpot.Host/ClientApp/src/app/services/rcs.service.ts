@@ -30,15 +30,21 @@ export class RcsService {
     return this.http.post(this.createNewCityUrl, cityName);
   }
 
-  getCities() {
-    return this.http.get(this.getCitiesUrl);
+  getCities(id?) {
+    if (id) {
+      this.getCitiesUrl = `/api/Station/getCities?regionId=${id}`;
+    }
+    return this.http.get(this.getCitiesUrl, id);
   }
 
   addNewStation(stationName) {
     return this.http.post(this.createNewStation, stationName);
   }
 
-  getStations() {
-    return this.http.get(this.getStationsUrl);
+  getStations(id?) {
+    if (id) {
+      this.getStationsUrl = `/api/Station/getStations?cityId=${id}`;
+    }
+    return this.http.get(this.getStationsUrl, id);
   }
 }

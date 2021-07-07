@@ -26,7 +26,7 @@ export class AddNewRcsComponent implements OnInit {
     });
 
     this.service.getCities().subscribe((cities: any) => {
-      this.cities = cities;
+      this.cities = cities;      
     });
   }
 
@@ -47,7 +47,10 @@ export class AddNewRcsComponent implements OnInit {
       name: this.newStation,
       cityId: this.selectedCity
     };
-    this.service.addNewStation(station).subscribe();
+    this.service.addNewStation(station).subscribe((res: any) => {
+      if (res.status === 200) this.newStation = '';
+      
+    });
   }
 }
 

@@ -11,7 +11,7 @@
                             <div class="input-form">
                                 <kendo-floatinglabel text="Choose a Region">
                                     <kendo-dropdownlist [data]="regions" textField="name" valueField="id"
-                                        (selectionChange)="selection.region = $event">
+                                        (selectionChange)="onRegionSelect($event)">
                                     </kendo-dropdownlist>
                                     <!-- <div *ngIf="usernameInput.touched && !usernameInput.valid">
                                             <kendo-formerror *ngIf="usernameInput.errors.required">Username is requred.</kendo-formerror>
@@ -22,7 +22,7 @@
                             <div class="input-form">
                                 <kendo-floatinglabel text="Choose a City">
                                     <kendo-dropdownlist [data]="cities" textField="name" valueField="id"
-                                        (selectionChange)="selection.city = $event">
+                                        (selectionChange)="selectedCity = $event">
                                     </kendo-dropdownlist>
                                     <!-- <div *ngIf="nameInput.touched && !nameInput.valid">
                                             <kendo-formerror *ngIf="nameInput.errors.required">Name is requred.</kendo-formerror>
@@ -30,12 +30,15 @@
                                         </div> -->
                                 </kendo-floatinglabel>
                             </div>
-                            <div class="mb-3 text-center">
-                               <div class="mb-2">
-                                <kendo-label text="Choose a month and year"></kendo-label>
-                               </div>
-                                <input required ngModel #startDate="ngModel" type="month" name="startDate"
-                                        min="1990-01"/>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Choose Year">
+                                    <input required ngModel #year="ngModel" type="text" name="year" />
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Choose Month">
+                                    <input required ngModel #month="ngModel" type="text" name="month" />
+                                </kendo-floatinglabel>
                             </div>
                             <div class="checkbox-form">
                                 <div class="checkbox-item">
