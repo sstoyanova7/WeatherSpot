@@ -2,71 +2,56 @@
     <div *ngIf="!showGrid" class="station-form-container">
         <kendo-card [width]="'300px'" class="k-vbox bg-light-dark">
             <kendo-card-header class="text-center">
-                <h3>Browse a Station</h3>
+                <h3>Browse Stations</h3>
             </kendo-card-header>
             <kendo-card-body>
                 <div class="form-container">
                     <form #templateForm="ngForm" (ngSubmit)="onSubmit(templateForm)">
                         <div class="input-container">
-                                <div class="input-form">
-                                    <kendo-floatinglabel text="Enter Region">
-                                        <input
-                                            required
-                                            ngModel
-                                            #regionInput="ngModel"
-                                            type="text" 
-                                            name="region"
-                                        />
-                                        <!-- <div *ngIf="usernameInput.touched && !usernameInput.valid">
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Choose a Region">
+                                    <kendo-dropdownlist [data]="regions" textField="name" valueField="id"
+                                        (selectionChange)="selection.region = $event">
+                                    </kendo-dropdownlist>
+                                    <!-- <div *ngIf="usernameInput.touched && !usernameInput.valid">
                                             <kendo-formerror *ngIf="usernameInput.errors.required">Username is requred.</kendo-formerror>
                                             <kendo-formerror *ngIf="usernameInput.errors.minlength">Username must be more than 6 characters.</kendo-formerror>
                                         </div> -->
-                                    </kendo-floatinglabel>
-                                </div>
-                                <div class="input-form">
-                                    <kendo-floatinglabel text="Enter City">
-                                        <input
-                                            required
-                                            ngModel
-                                            #cityInput="ngModel"
-                                            type="text" 
-                                            name="city"
-                                        />
-                                        <!-- <div *ngIf="nameInput.touched && !nameInput.valid">
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Choose a City">
+                                    <kendo-dropdownlist [data]="cities" textField="name" valueField="id"
+                                        (selectionChange)="selection.city = $event">
+                                    </kendo-dropdownlist>
+                                    <!-- <div *ngIf="nameInput.touched && !nameInput.valid">
                                             <kendo-formerror *ngIf="nameInput.errors.required">Name is requred.</kendo-formerror>
                                             <kendo-formerror *ngIf="nameInput.errors.minlength">Name must be more than 6 characters.</kendo-formerror>
                                         </div> -->
-                                    </kendo-floatinglabel>
-                                </div>
-                            <div class="input-form">
-                                <kendo-floatinglabel text="">
-                                    <input 
-                                        required
-                                        ngModel
-                                        #dateInput="ngModel"
-                                        type="date" 
-                                        name="date" 
-                                        min="1990-01-01"
-                                        max="{{ date | date:'yyyy-MM-dd' }}"
-                                    />
-                                        <!-- <div *ngIf="emailInput.touched && !emailInput.valid">
-                                            <kendo-formerror *ngIf="emailInput.errors.required">Email is requred.</kendo-formerror>
-                                            <kendo-formerror *ngIf="emailInput.errors.email">Invalid email address.</kendo-formerror>
-                                        </div> -->
                                 </kendo-floatinglabel>
+                            </div>
+                            <div class="mb-3 text-center">
+                               <div class="mb-2">
+                                <kendo-label text="Choose a month and year"></kendo-label>
+                               </div>
+                                <input required ngModel #startDate="ngModel" type="month" name="startDate"
+                                        min="1990-01"/>
                             </div>
                             <div class="checkbox-form">
                                 <div class="checkbox-item">
                                     <label for="rain">Rain:</label>
-                                    <input type="checkbox" name="rain" id="rain" kendoCheckBox [(ngModel)]="checkboxModel.rain">
+                                    <input type="checkbox" name="rain" id="rain" kendoCheckBox
+                                        [(ngModel)]="checkboxModel.rain">
                                 </div>
                                 <div class="checkbox-item">
                                     <label for="temperature">Temperature:</label>
-                                    <input type="checkbox" name="temperature" id="temperature" kendoCheckBox [(ngModel)]="checkboxModel.temperature">
+                                    <input type="checkbox" name="temperature" id="temperature" kendoCheckBox
+                                        [(ngModel)]="checkboxModel.temperature">
                                 </div>
                                 <div class="checkbox-item">
                                     <label for="stats">Stats:</label>
-                                    <input type="checkbox" name="stats" id="stats" kendoCheckBox [(ngModel)]="checkboxModel.stats">
+                                    <input type="checkbox" name="stats" id="stats" kendoCheckBox
+                                        [(ngModel)]="checkboxModel.stats">
                                 </div>
                             </div>
                             <div class="button-form">
@@ -89,12 +74,12 @@
             <kendo-grid-column *ngIf="checkboxModel.temperature" title="Дата" width="60"></kendo-grid-column>
             <kendo-grid-column *ngIf="checkboxModel.rain" title="Сума" width="60"></kendo-grid-column>
             <kendo-grid-column *ngIf="checkboxModel.rain" title="Q/Qn" width="60"></kendo-grid-column>
-            <kendo-grid-column *ngIf="checkboxModel.rain" title="Максимален" width="110"></kendo-grid-column>
+            <kendo-grid-column *ngIf="checkboxModel.rain" title="Максимален" width="100"></kendo-grid-column>
             <kendo-grid-column *ngIf="checkboxModel.rain" title="Дата" width="60"></kendo-grid-column>
-            <kendo-grid-column *ngIf="checkboxModel.stats" title="Валеж >= 1" width="110"></kendo-grid-column>
-            <kendo-grid-column *ngIf="checkboxModel.stats" title="Валеж >= 10" width="110"></kendo-grid-column>
-            <kendo-grid-column *ngIf="checkboxModel.stats" title="Вятър >= 14" width="110"></kendo-grid-column>
-            <kendo-grid-column *ngIf="checkboxModel.stats" title="Гръмотевици" width="120"></kendo-grid-column>
+            <kendo-grid-column *ngIf="checkboxModel.stats" title="Валеж >= 1(дни)" width="130"></kendo-grid-column>
+            <kendo-grid-column *ngIf="checkboxModel.stats" title="Валеж >= 10(дни)" width="130"></kendo-grid-column>
+            <kendo-grid-column *ngIf="checkboxModel.stats" title="Вятър >= 14(дни)" width="130"></kendo-grid-column>
+            <kendo-grid-column *ngIf="checkboxModel.stats" title="Гръмотевици(дни)" width="130"></kendo-grid-column>
         </kendo-grid>
         <div class="back-button mt-3 text-right">
             <button kendoButton [primary]="true" (click)="searchAgain()">Search again</button>

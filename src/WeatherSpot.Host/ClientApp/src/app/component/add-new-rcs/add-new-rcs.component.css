@@ -1,0 +1,21 @@
+.container {
+    max-width:1200px;
+}
+
+.profile-change-items {
+    display: flex;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-change-item {
+    width: 300px;
+    height: 400px;
+    margin-right: 2.5rem;
+}
+
+.deactivate-account {
+    width: 300px;
+    height: 400px;
+}

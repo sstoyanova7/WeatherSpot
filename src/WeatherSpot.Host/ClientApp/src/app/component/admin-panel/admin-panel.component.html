@@ -8,18 +8,21 @@
 
                 <ng-template kendoGridCellTemplate let-dataItem>
                     <kendo-dropdownlist [data]="roleData" [value]="roleData[dataItem.roleId - 1]"
-                        (selectionChange)="changeUserRole($event, dataItem.id)"></kendo-dropdownlist>
+                        (selectionChange)="changeUserRole($event, dataItem.id)" [disabled]="canAdminChangeRole()">
+                    </kendo-dropdownlist>
                 </ng-template>
 
             </kendo-grid-column>
             <kendo-grid-column class="text-center" field="status" title="status" width="100">
                 <ng-template kendoGridCellTemplate let-dataItem>
                     <div *ngIf="dataItem.isActive === true">
-                        <button class="badge badge-success badge-button" (click)="deactivateUser(dataItem.id)">Disable
+                        <button class="badge badge-success badge-button" (click)="deactivateUser(dataItem.id)"
+                            [disabled]="canAdminChangeRole()">Disable
                         </button>
                     </div>
                     <div *ngIf="dataItem.isActive === false">
-                        <button class="badge badge-danger badge-button" (click)="activateUser(dataItem.id)">Enable
+                        <button class="badge badge-danger badge-button" (click)="activateUser(dataItem.id)"
+                            [disabled]="canAdminChangeRole()">Enable
                         </button>
                     </div>
                 </ng-template>

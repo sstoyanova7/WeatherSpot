@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegisterUser } from '../../modules/registerUser';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -14,7 +13,7 @@ export class RegisterPageComponent implements OnInit {
 
   public validatePasswords: boolean = true;
   public status: string;
-  constructor(private router: Router, private regService: UserService) { }
+  constructor(private router: Router, private regService: AuthService) { }
 
   ngOnInit() {
 
@@ -34,7 +33,7 @@ export class RegisterPageComponent implements OnInit {
         if (this.status === '200') {
           setTimeout(() => {
             this.status = '';
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'])
           }, 2000);
           
         } else {

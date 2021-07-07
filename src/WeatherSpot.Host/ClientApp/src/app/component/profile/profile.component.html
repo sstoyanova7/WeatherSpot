@@ -3,7 +3,6 @@
         <div class="profile-change-items">
             <div class="profile-change-item text-center">
                 <kendo-expansionpanel title="change username">
-                    <p>current username: [username]</p>
                     <form (ngSubmit)="onChangeUsername()">
                         <div class="new-username-input">
                             <kendo-floatinglabel text="Enter New Username">
@@ -28,7 +27,9 @@
                         <div>
                             <kendo-floatinglabel text="Confirm New Password">
                                 <input kendoTextBox type="password" name="confirmNewPassword" [(ngModel)]="confirmNewPassword"/>
+
                             </kendo-floatinglabel>
+                                <kendo-formerror *ngIf="!arePasswordsValid">Passwords do not match.</kendo-formerror>
                         </div>
                         <div class="mt-3">
                             <button kendoButton [primary]="true">Change Password</button>

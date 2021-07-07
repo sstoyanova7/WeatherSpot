@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="profile-change-container">
+        <div class="profile-change-items">
+            <div class="profile-change-item text-center">
+                <kendo-expansionpanel title="add region">
+                    <form (ngSubmit)="onAddNewRegion()">
+                        <div class="new-username-input">
+                            <kendo-floatinglabel text="add region">
+                                <input kendoTextBox type="text" name="newRegion" [(ngModel)]="newRegion" />
+                            </kendo-floatinglabel>
+                        </div>
+                        <div class="mt-3">
+                            <button kendoButton [primary]="true">Add Region</button>
+                        </div>
+                    </form>
+                </kendo-expansionpanel>
+            </div>
+
+            <div class="profile-change-item text-center">
+                <kendo-expansionpanel title="add city">
+                    <form (ngSubmit)="onAddnewCity()">
+                        <div>
+                            <kendo-floatinglabel text="Choose Region">
+                                <kendo-dropdownlist [data]="regions" textField="name" valueField="id"
+                                    (selectionChange)="selectedRegion = $event.id"></kendo-dropdownlist>
+                            </kendo-floatinglabel>
+                        </div>
+                        <div>
+                            <kendo-floatinglabel text="Add City">
+                                <input kendoTextBox type="text" name="city" [(ngModel)]="newCity" />
+                            </kendo-floatinglabel>
+                        </div>
+                        <div class="mt-3">
+                            <button kendoButton [primary]="true">Add City</button>
+                        </div>
+                    </form>
+                </kendo-expansionpanel>
+            </div>
+
+            <div class="profile-change-item text-center">
+                <kendo-expansionpanel title="add station">
+                    <form (ngSubmit)="onAddNewStation()">
+                        <div>
+                            <kendo-floatinglabel text="Choose City">
+                                <kendo-dropdownlist [data]="cities" textField="name" valueField="id"
+                                    (selectionChange)="selectedCity = $event.id"></kendo-dropdownlist>
+                            </kendo-floatinglabel>
+                        </div>
+                        <div>
+                            <kendo-floatinglabel text="Add Station">
+                                <input kendoTextBox type="text" name="station" [(ngModel)]="newStation" />
+                            </kendo-floatinglabel>
+                        </div>
+                        <div class="mt-3">
+                            <button kendoButton [primary]="true">Add Station</button>
+                        </div>
+                    </form>
+                </kendo-expansionpanel>
+            </div>
+        </div>
+    </div>
+</div>

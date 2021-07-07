@@ -2,102 +2,188 @@
     <div class="register-container">
         <kendo-card [width]="'1000px'" class="k-vbox bg-light-dark">
             <kendo-card-header class="text-center">
-                <h3>Add Station</h3>
+                <h3>Add Station Data</h3>
             </kendo-card-header>
             <kendo-card-body>
                 <div class="form-container">
                     <form #templateForm="ngForm" (ngSubmit)="onSubmit(templateForm)">
                         <div class="input-container">
                             <div class="input-form">
-                                <kendo-floatinglabel text="Enter Station Name">
-                                    <input required ngModel #stationName="ngModel" type="text" name="stationName" />
+                                <kendo-floatinglabel text="Choose Region">
+                                    <kendo-dropdownlist [data]="regions" textField="name" valueField="id">
+                                    </kendo-dropdownlist>
                                     <!-- <div *ngIf="usernameInput.touched && !usernameInput.valid">
                                     <kendo-formerror *ngIf="usernameInput.errors.required">Username is requred.</kendo-formerror>
                                 </div> -->
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
-                                <kendo-floatinglabel text="Enter Region">
-                                    <input required ngModel #region="ngModel" type="text" name="region" />
+                                <kendo-floatinglabel text="Choose City">
+                                    <kendo-dropdownlist [data]="cities" textField="name" valueField="id">
+                                    </kendo-dropdownlist>
                                     <!-- <div *ngIf="passwordInput.touched && !passwordInput.valid">
                                     <kendo-formerror *ngIf="passwordInput.errors.required">Password is requred.</kendo-formerror>
                                 </div> -->
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
-                                <kendo-floatinglabel text="Enter City">
-                                    <input required ngModel #city="ngModel" type="text" name="city" />
+                                <kendo-floatinglabel text="Choose Station">
+                                    <kendo-dropdownlist [data]="stations" textField="name" valueField="id">
+                                    </kendo-dropdownlist>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter T avg.">
                                     <input required ngModel #tAvg="ngModel" type="text" name="tAvg" />
+                                    <div *ngIf="tAvg.touched && !tAvg.valid">
+                                        <kendo-formerror *ngIf="tAvg.errors.required">Averege Temp is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Tδ">
                                     <input required ngModel #temperatureDeviation="ngModel" type="text"
                                         name="temperatureDeviation" />
+                                    <div *ngIf="temperatureDeviation.touched && !temperatureDeviation.valid">
+                                        <kendo-formerror *ngIf="temperatureDeviation.errors.required">Averege Temp is
+                                            requred.</kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Tmax">
                                     <input required ngModel #tMax="ngModel" type="text" name="tMax" />
+                                    <div *ngIf="tMax.touched && !tMax.valid">
+                                        <kendo-formerror *ngIf="tMax.errors.required">Averege Temp is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Date">
                                     <input required ngModel #dateOne="ngModel" type="text" name="dateOne" />
+                                    <div *ngIf="dateOne.touched && !dateOne.valid">
+                                        <kendo-formerror *ngIf="dateOne.errors.required">Averege Temp is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Tmin">
                                     <input required ngModel #tMin="ngModel" type="text" name="tMin" />
+                                    <div *ngIf="tMin.touched && !tMin.valid">
+                                        <kendo-formerror *ngIf="tMin.errors.required">Averege Temp is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Date">
                                     <input required ngModel #dateTwo="ngModel" type="text" name="dateTwo" />
+                                    <div *ngIf="dateTwo.touched && !dateTwo.valid">
+                                        <kendo-formerror *ngIf="dateTwo.errors.required">Averege Temp is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Amount">
                                     <input required ngModel #amount="ngModel" type="text" name="amount" />
+                                    <div *ngIf="amount.touched && !amount.valid">
+                                        <kendo-formerror *ngIf="amount.errors.required">Averege Temp is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Q/Qn">
                                     <input required ngModel #percentT="ngModel" type="text" name="percentT" />
+                                    <div *ngIf="percentT.touched && !percentT.valid">
+                                        <kendo-formerror *ngIf="percentT.errors.required">Averege Temp is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Maximum Rain">
                                     <input required ngModel #maxRain="ngModel" type="text" name="maxRain" />
+                                    <div *ngIf="maxRain.touched && !maxRain.valid">
+                                        <kendo-formerror *ngIf="maxRain.errors.required">Averege Temp is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Date">
                                     <input required ngModel #dateThree="ngModel" type="text" name="dateThree" />
+                                    <div *ngIf="dateThree.touched && !dateThree.valid">
+                                        <kendo-formerror *ngIf="dateThree.errors.required">Date is requred.
+                                        </kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Rain(mm) >= 1">
                                     <input required ngModel #rainBelow="ngModel" type="text" name="rainBelow" />
+                                    <div *ngIf="rainBelow.touched && !rainBelow.valid">
+                                        <kendo-formerror *ngIf="rainBelow.errors.required">Rain(mm) >= 1 (per day) is
+                                            requred.</kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Rain(mm) >= 10">
                                     <input required ngModel #rainAbove="ngModel" type="text" name="rainAbove" />
+                                    <div *ngIf="rainAbove.touched && !rainAbove.valid">
+                                        <kendo-formerror *ngIf="rainAbove.errors.required">Rain(mm) >= 10 (per day) is
+                                            requred.</kendo-formerror>
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Wind >= 14 m/s">
                                     <input required ngModel #wind="ngModel" type="text" name="wind" />
+                                    <div *ngIf="wind.touched && !wind.valid">
+                                        <kendo-formerror *ngIf="wind.errors.required">Wind (per day) is requred.
+                                        </kendo-formerror>
+
+                                    </div>
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Thunders">
                                     <input required ngModel #thunders="ngModel" type="text" name="thunders" />
+                                    <div *ngIf="thunders.touched && !thunders.valid">
+                                        <kendo-formerror *ngIf="thunders.errors.required">Thunders (per day) is requred.
+                                        </kendo-formerror>
+                                    </div>
+                                </kendo-floatinglabel>
+                            </div>
+                            <div class="input-form">
+                                <div class="mb-2">
+                                    <kendo-label text="Choose a start date"></kendo-label>
+                                </div>
+                                <input required ngModel #startDate="ngModel" type="month" name="startDate"
+                                    min="1990-01" />
+                            </div>
+                            <div class="input-form">
+                                <div class="mb-2">
+                                    <kendo-label text="Choose an end date"></kendo-label>
+                                </div>
+                                <input required ngModel #endDate="ngModel" type="month" name="endDate" min="1990-01" />
+                            </div>
+                            <div class="input-form">
+                                <kendo-floatinglabel text="Enter Weight">
+                                    <input required ngModel #weight="ngModel" type="number" name="weight" min="0"
+                                        max="1" />
+                                    <div *ngIf="weight.touched && !weight.valid">
+                                        <kendo-formerror *ngIf="weight.errors.required">Weight is requred.
+                                        </kendo-formerror>
+                                    </div>
+                                    <kendo-formerror *ngIf="!isWeightValid">Weight must be between 0 and 1.
+                                    </kendo-formerror>
+
                                 </kendo-floatinglabel>
                             </div>
                             <div class="button-form">

@@ -8,25 +8,16 @@ export class UserService {
 
 
   private getUsersUrl: string = '/api/User/getUsers';
-  private registerUserUrl: string = '/api/User/createNewUser';
-  private loginUserUrl: string = '/api/Authentication/sign-in';
   private deactivateUserUrl: string = '/api/User/deactivateUser';
   private changeUserRoleUrl: string = "/api/User/changeUserRole";
   private activateUserUrl: string = '/api/User/activateUser';
-  private logoutUserUrl: string = '/api/Authentication/logout';
+  private changeUsernameUrl: string = '/api/User/changeUsername';
+  private changePasswordUrl: string = '/api/User/changePassword';
 
   constructor(private http: HttpClient) { }
 
-  registerUser(user) {
-    return this.http.post(this.registerUserUrl, user);
-  }
-
   getUsers() {
     return this.http.get(this.getUsersUrl);
-  }
-
-  loginUser(user) {
-    return this.http.post(this.loginUserUrl, user);
   }
 
   changeUserRole(userData) {
@@ -41,7 +32,11 @@ export class UserService {
     return this.http.put(this.activateUserUrl, id);
   }
 
-  logout() {
-    return this.http.post(this.logoutUserUrl, {});
+  changeUsername(user) {
+    return this.http.put(this.changeUsernameUrl, user);
+  }
+
+  changePassword(user) {
+    return this.http.put(this.changePasswordUrl, user);
   }
 }

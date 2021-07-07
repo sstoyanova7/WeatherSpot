@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,31 +12,42 @@ export class ProfileComponent implements OnInit {
   public newUsername: string;
   public newPassword: string;
   public confirmNewPassword: string;
-  constructor() { }
 
-  ngOnInit() {
-  }
+  public arePasswordsValid: boolean = true;
+  constructor(private service: UserService, private auth: AuthService) { }
+
+  ngOnInit() { }
 
 
   onChangeUsername() {
-    console.log(this.newUsername);
-    /**
-     * check if current username !== new username
-     */
+    const user = this.auth.currentUser();
+    const data = {
+      userId: user.UserId,
+      username: this.newUsername
+    };
+
+    this.service.changeUsername(data).subscribe();
   }
 
   onChangePassword() {
-    console.log(this.newPassword + ' ' + this.confirmNewPassword);
-    /**
-     * check if passwords match
-     * API - /api/User/changePassword
-     */
+    if (this.newPassword !== this.confirmNewPassword) {
+      this.arePasswordsValid = false;
+    } else {
+      this.arePasswordsValid = true;
+      const user = this.auth.currentUser();
+      const data = {
+        userId: user.UserId,
+        newPassword: this.newPassword
+      };
+
+      this.service.changePassword(data).subscribe();
+    }
   }
 
   deactivateAccount() {
-    console.log('account diactivated.');
-    /**
-     * API - /api/User/deactivateUser
-     */
+    if (confirm('Are you sure you want to diactivate your account?')) {
+      const user = this.auth.currentUser();
+      this.service.deactivateUser(user.UserId);
+    }
   }
 }

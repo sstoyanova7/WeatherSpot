@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginUser } from '../../modules/loginUser';
 
 @Component({
@@ -10,27 +11,23 @@ import { LoginUser } from '../../modules/loginUser';
 export class LoginPageComponent implements OnInit {
 
   public isValid: boolean = true;
-  
-  constructor(private service: UserService) { }
+
+  constructor(private service: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit(e) {
     console.log(e);
-    
+
     const user: LoginUser = new LoginUser(e.value.username, e.value.password);
 
     if (e.valid) {
-      this.service.loginUser(user).subscribe(response => {
-        console.log(response);
-        console.log(document.cookie);
+      this.service.loginUser(user).subscribe(() => {
+        if (document.cookie) {
+          this.router.navigate(['/station']);
+        }
       });
-
-
     }
-    
-    
-    
   }
 }

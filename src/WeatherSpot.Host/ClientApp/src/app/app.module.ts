@@ -18,8 +18,14 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { AdminPanelComponent } from './component/admin-panel/admin-panel.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { UserStationComponent } from './component/user-station/user-station.component';
 import { StationAdminComponent } from './component/station-admin/station-admin.component';
+import { AddNewRcsComponent } from './component/add-new-rcs/add-new-rcs.component';
+import { UserStationComponent } from './component/user-station/user-station.component';
+import { RcsService } from './services/rcs.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
+import { NoAccessComponent } from './component/no-access/no-access.component';
 
 
 
@@ -35,13 +41,15 @@ import { StationAdminComponent } from './component/station-admin/station-admin.c
     AppComponent,
     NavMenuComponent,
     LoginPageComponent,
+    UserStationComponent,
     RegisterPageComponent,
     LoginPageComponent,
     RegisterPageComponent,
     ProfileComponent,
     AdminPanelComponent,
-    UserStationComponent,
-    StationAdminComponent
+    StationAdminComponent,
+    AddNewRcsComponent,
+    NoAccessComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -49,12 +57,14 @@ import { StationAdminComponent } from './component/station-admin/station-admin.c
     FormsModule,
     RouterModule.forRoot([
       // { path: '', component: LoginPageComponent, pathMatch: 'full' }, after login
-      { path: 'login', component: LoginPageComponent },
       { path: 'register', component: RegisterPageComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'user-panel', component: AdminPanelComponent },
-      { path: 'station', component: UserStationComponent },
-      { path: 'station-panel', component: StationAdminComponent }
+      { path: 'login', component: LoginPageComponent },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+      { path: 'user-panel', component: AdminPanelComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+      { path: 'station', component: UserStationComponent, canActivate: [AuthGuard] },
+      { path: 'station-panel', component: StationAdminComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+      { path: 'add-rcs-panel', component: AddNewRcsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+      { path: 'no-access', component: NoAccessComponent }
 
       // { path: '**', component: RegisterPageComponent } add 404 page
     ]),
@@ -66,7 +76,7 @@ import { StationAdminComponent } from './component/station-admin/station-admin.c
     GridModule,
     DropDownsModule
   ],
-  providers: [UserService],
+  providers: [UserService, RcsService, AuthService, AuthGuard, AdminAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
