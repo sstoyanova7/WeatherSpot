@@ -66,8 +66,23 @@
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    @"DELETE FROM Stations WHERE CityId IN (SELECT Id FROM Cities WHERE RegionId = @RegionId)
+                    @"DELETE FROM TemperatureData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId IN (Select Id FROM Stations WHERE CityId IN (SELECT Id FROM Cities WHERE RegionId = @RegionId)))
+
+DELETE FROM RainData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId IN (Select Id FROM Stations WHERE CityId IN (SELECT Id FROM Cities WHERE RegionId = @RegionId)))
+
+DELETE FROM StatisticsData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId IN (Select Id FROM Stations WHERE CityId IN (SELECT Id FROM Cities WHERE RegionId = @RegionId)))
+
+DELETE FROM StationData 
+WHERE StationId IN (Select Id FROM Stations WHERE CityId IN (SELECT Id FROM Cities WHERE RegionId = @RegionId))
+
+DELETE FROM Stations 
+WHERE CityId IN (SELECT Id FROM Cities WHERE RegionId = @RegionId)
+
 DELETE FROM Cities WHERE RegionId = @RegionId
+
 DELETE FROM Regions WHERE Id = @RegionId";
 
                 var parameters = new
@@ -80,6 +95,7 @@ DELETE FROM Regions WHERE Id = @RegionId";
                 return deletedRegions >= 1;
             }
         }
+
         public IEnumerable<CityModel> GetCity(int cityId)
         {
             using (var con = new SqlConnection(_connectionString))
@@ -146,8 +162,23 @@ DELETE FROM Regions WHERE Id = @RegionId";
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    @"DELETE FROM Stations WHERE CityId=@CityId
-DELETE FROM Cities WHERE Id = @CityId";
+                    @"DELETE FROM TemperatureData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId IN (Select Id FROM Stations WHERE CityId = @CityId))
+
+DELETE FROM RainData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId IN (Select Id FROM Stations WHERE CityId = @CityId))
+
+DELETE FROM StatisticsData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId IN (Select Id FROM Stations WHERE CityId = @CityId))
+
+DELETE FROM StationData 
+WHERE StationId IN (Select Id FROM Stations WHERE CityId = @CityId)
+
+DELETE FROM Stations 
+WHERE CityId = @CityId
+
+DELETE FROM Cities WHERE CityId = @CityId
+";
 
                 var parameters = new
                 {
@@ -165,7 +196,7 @@ DELETE FROM Cities WHERE Id = @CityId";
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    "DELETE FROM Stations WHERE Id=@StationId";
+                    "SELECT * FROM Stations WHERE Id=@StationId";
 
                 var parameters = new
                 {
@@ -245,11 +276,24 @@ WHERE Cities.RegionId=@RegionId";
             using (var con = new SqlConnection(_connectionString))
             {
                 var query =
-                    "DELETE FROM Stations WHERE Id=@Id";
+                    @"DELETE FROM TemperatureData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId = @StationId
+
+DELETE FROM RainData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId = @StationId
+
+DELETE FROM StatisticsData 
+WHERE StationDataId IN (SELECT Id FROM StationData WHERE StationId = @StationId
+
+DELETE FROM StationData 
+WHERE StationId = @StationId
+
+DELETE FROM Stations 
+WHERE Id = @StationId";
 
                 var parameters = new
                 {
-                    Id = stationId
+                    @StationId = stationId
                 };
 
                 var deletedStations = con.Execute(query, parameters);

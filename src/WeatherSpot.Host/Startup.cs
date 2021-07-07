@@ -1,5 +1,6 @@
 namespace WeatherSpot.Host
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -9,6 +10,7 @@ namespace WeatherSpot.Host
     using Microsoft.OpenApi.Models;
     using WeatherSpot.BL;
     using WeatherSpot.DataLayer;
+    using WeatherSpot.Models.RequestModels.AutoMapper;
 
     public class Startup
     {
@@ -22,12 +24,22 @@ namespace WeatherSpot.Host
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new StationDataDbModelStationDataMappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddControllersWithViews();
             services.AddTransient<UserDataLayer>();
             services.AddTransient<StationDataLayer>();
+            services.AddTransient<StationDataDataLayer>();
             services.AddSingleton<IJWTService, JWTService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IStationService, StationService>();
+            services.AddSingleton<IStationDataService, StationDataService>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

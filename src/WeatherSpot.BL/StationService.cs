@@ -72,14 +72,14 @@
             {
                 return _stationDal.GetCity(cityId);
             }
+
             if (regionId != 0)
             {
                 return _stationDal.GetCitiesByRegionId(regionId);
             }
-            else
-            {
-                return _stationDal.GetCities();
-            }
+
+            return _stationDal.GetCities();
+           
         }
 
         public ResponseWithMessage AddNewCity(NewCityRequestModel request)
