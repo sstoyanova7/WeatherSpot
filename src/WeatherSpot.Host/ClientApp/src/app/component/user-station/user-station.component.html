@@ -67,11 +67,8 @@
         </kendo-card>
     </div>
     <div *ngIf="showGrid" class="grid-station">
-        <div class="stat-buttons">
-
-        </div>
         <kendo-grid [data]="data" style="height: 450px; width: 1400px" [scrollable]="true">
-            <button> <kendo-grid-column *ngIf="checkboxModel.temperature" field="stationDataId" title="Станция" width="80"></kendo-grid-column> </button>
+            <button> <kendo-grid-column *ngIf="checkboxModel.temperature" field="stationName" title="Станция" width="100"></kendo-grid-column> </button>
             <kendo-grid-column *ngIf="checkboxModel.temperature" field="temperatureData.average" title="Tср" width="50"></kendo-grid-column>
             <kendo-grid-column *ngIf="checkboxModel.temperature" field="temperatureData.delta" title="Отклонение Т" width="115"></kendo-grid-column>
             <kendo-grid-column *ngIf="checkboxModel.temperature" field="temperatureData.max" title="Тмакс" width="65"></kendo-grid-column>
@@ -87,8 +84,34 @@
             <kendo-grid-column *ngIf="checkboxModel.stats" field="statisticsData.daysWindOver14ms" title="Вятър >= 14(дни)" width="130"></kendo-grid-column>
             <kendo-grid-column *ngIf="checkboxModel.stats" field="statisticsData.daysThunderbolts" title="Гръмотевици(дни)" width="130"></kendo-grid-column>
         </kendo-grid>
+        <div class="stat-buttons">
+            <kendo-dropdownlist  [data]="statChoices" (selectionChange)="choosedStat = $event" [textField]="'text'" [valueField]="'value'">
+            </kendo-dropdownlist>
+            <button kendoButton [primary]="true" (click)="showStat()">Покажи статистика</button>
+        </div>
         <div class="back-button mt-3 text-right">
             <button kendoButton [primary]="true" (click)="searchAgain()">Search again</button>
         </div>
     </div>
+
+    <kendo-window title="my window" *ngIf="opened" (close)="onClose()" [width]="1000" [height]="600">
+
+        <kendo-chart>
+            <kendo-chart-title [text]="choosedStat.text"></kendo-chart-title>
+            <kendo-chart-category-axis>
+              <kendo-chart-category-axis-item [categories]="stationNames">
+              </kendo-chart-category-axis-item>
+            </kendo-chart-category-axis>
+            <kendo-chart-series>
+              <kendo-chart-series-item
+                type="bar"
+                [gap]="2"
+                [spacing]="0.25"
+                [data]="stationValues"
+              >
+              </kendo-chart-series-item>
+              
+            </kendo-chart-series>
+          </kendo-chart>
+    </kendo-window>
 </div>
