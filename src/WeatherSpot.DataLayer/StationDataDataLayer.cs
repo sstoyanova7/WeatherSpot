@@ -39,11 +39,12 @@
 	rd.Max as MaxRain,
 	rd.DayMax as DayMaxRain,
 	sd.DaysRainOver1mm as DaysRainOver1mm,
-	sd.DaysRainUnder1mm as DaysRainUnder1mm,
+	sd.DaysRainOver10mm as DaysRainOver10mm,
 	sd.DaysWindOver14ms as DaysWindOver14ms,
 	sd.DaysThunderbolts as DaysThunderbolts,
 	c.Id as CityId,
 	c.RegionId as RegionId
+FROM StationData s
 FROM StationData s
 INNER JOIN TemperatureData td ON s.Id = td.StationDataId
 INNER JOIN RainData rd ON s.Id = rd.StationDataId
@@ -119,14 +120,14 @@ VALUES(@StationDataId, @Total, @QQN, @Max, @DayMax)";
                     con.Query(query, rainParameters);
 
                     query =
-@"INSERT INTO StatisticsData(StationDataId, DaysRainOver1mm, DaysRainUnder1mm, DaysWindOver14ms, DaysThunderbolts)
-VALUES(@StationDataId, @DaysRainOver1mm, @DaysRainUnder1mm, @DaysWindOver14ms, @DaysThunderbolts)";
+@"INSERT INTO StatisticsData(StationDataId, DaysRainOver1mm, DaysRainOver10mm, DaysWindOver14ms, DaysThunderbolts)
+VALUES(@StationDataId, @DaysRainOver1mm, @DaysRainOver10mm, @DaysWindOver14ms, @DaysThunderbolts)";
 
                     var statisticsParameters = new
                     {
                         StationDataId = stationDataId,
                         DaysRainOver1mm = request.DaysRainOver1mm,
-                        DaysRainUnder1mm = request.DaysRainUnder1mm,
+                        DaysRainOver10mm = request.DaysRainOver10mm,
                         DaysWindOver14ms = request.DaysWindOver14ms,
                         DaysThunderbolts = request.DaysThunderbolts
                     };
@@ -171,7 +172,7 @@ Where StationDataId = @StationDataId
 
 UPDATE StatisticsData
 SET DaysRainOver1mm = @DaysRainOver1mm,
-DaysRainUnder1mm = @DaysRainUnder1mm,
+DaysRainOver10mm = @DaysRainOver10mm,
 DaysWindOver14ms = @DaysWindOver14ms,
 DaysThunderbolts = @DaysThunderbolts
 Where StationDataId = @StationDataId";
@@ -191,7 +192,7 @@ Where StationDataId = @StationDataId";
                         RainMax = request.RainMax,
                         RainDayMax = request.RainDayMax,
                         DaysRainOver1mm = request.DaysRainOver1mm,
-                        DaysRainUnder1mm = request.DaysRainUnder1mm,
+                        DaysRainOver10mm = request.DaysRainOver10mm,
                         DaysWindOver14ms = request.DaysWindOver14ms,
                         DaysThunderbolts = request.DaysThunderbolts,
                     };
