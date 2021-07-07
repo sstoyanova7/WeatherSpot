@@ -25,6 +25,7 @@
                 var query =
 				  @"SELECT s.Id as StationDataId, 
 	s.StationId as StationDataId,
+	st.Name as StationName,
 	s.Month as Month,
 	s.Year as Year,
 	s.Weight as Weight,

@@ -11,6 +11,7 @@ namespace WeatherSpot.Models.RequestModels.AutoMapper
             CreateMap<StationDataDbModel, StationData>()
                 .ForMember(dest => dest.StationDataId, act => act.MapFrom(src => src.StationDataId))
                 .ForMember(dest => dest.StationId, act => act.MapFrom(src => src.StationId))
+                .ForMember(dest => dest.StationName, act => act.MapFrom(src => src.StationName))
                 .ForMember(dest => dest.CityId, act => act.MapFrom(src => src.CityId))
                 .ForMember(dest => dest.RegionId, act => act.MapFrom(src => src.RegionId))
                 .ForMember(dest => dest.Month, act => act.MapFrom(src => src.Month))

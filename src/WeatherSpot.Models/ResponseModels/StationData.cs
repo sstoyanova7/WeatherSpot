@@ -4,6 +4,7 @@
     {
         public int StationDataId { get; set; }
         public int StationId { get; set; }
+        public string StationName { get; set; }
         public int CityId { get; set; }
         public int RegionId { get; set; }
         public int Month { get; set; }
