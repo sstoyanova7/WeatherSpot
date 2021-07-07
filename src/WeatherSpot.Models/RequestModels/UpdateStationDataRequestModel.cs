@@ -3,7 +3,7 @@
     public class UpdateStationDataRequestModel
     {
         public int StationDataId { get; set; }
-        public int Weight { get; set; }
+        public double Weight { get; set; }
         public double TemperatureAverage { get; set; }
         public double TemperatureDelta { get; set; }
         public double TemperatureMax { get; set; }
