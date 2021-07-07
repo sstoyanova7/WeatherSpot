@@ -26,6 +26,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { NoAccessComponent } from './component/no-access/no-access.component';
+import { StationDataService } from './services/station-data.service';
 
 
 
@@ -59,7 +60,7 @@ import { NoAccessComponent } from './component/no-access/no-access.component';
       // { path: '', component: LoginPageComponent, pathMatch: 'full' }, after login
       { path: 'register', component: RegisterPageComponent },
       { path: 'login', component: LoginPageComponent },
-      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
       { path: 'user-panel', component: AdminPanelComponent, canActivate: [AuthGuard, AdminAuthGuard] },
       { path: 'station', component: UserStationComponent, canActivate: [AuthGuard] },
       { path: 'station-panel', component: StationAdminComponent, canActivate: [AuthGuard, AdminAuthGuard] },
@@ -76,7 +77,7 @@ import { NoAccessComponent } from './component/no-access/no-access.component';
     GridModule,
     DropDownsModule
   ],
-  providers: [UserService, RcsService, AuthService, AuthGuard, AdminAuthGuard],
+  providers: [UserService, RcsService, AuthService, AuthGuard, AdminAuthGuard, StationDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

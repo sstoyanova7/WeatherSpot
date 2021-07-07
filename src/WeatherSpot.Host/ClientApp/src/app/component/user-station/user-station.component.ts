@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RcsService } from 'src/app/services/rcs.service';
+import { StationDataService } from 'src/app/services/station-data.service';
 
 @Component({
   selector: 'app-user-station',
@@ -14,48 +15,44 @@ export class UserStationComponent implements OnInit {
     temperature: false,
     stats: false
   };
+
+  public data = [];
  
   public regions: any = [];
   public cities: any = [];
-  public stations: any = [];
 
-  public selection: any = {
-    region: Object,
-    city: Object,
-    station: Object
-  }
+  public selectedRegion: any;
+  public selectedCity: any;
 
   public showGrid: boolean = false;
-  public date: Date = new Date();
 
-  constructor(private service: RcsService) { }
+  constructor(private service: RcsService, private stationData: StationDataService) { }
 
   ngOnInit() {
     this.service.getRegions().subscribe((regions: any) => {
       this.regions = regions;
     });
+  }
 
-    this.service.getCities().subscribe((cities: any) => {
+  onRegionSelect(region) {
+    this.selectedRegion = region;
+
+    this.service.getCities(region.id).subscribe((cities: any) => {
       this.cities = cities;
-    });
-
-    this.service.getStations().subscribe((stations: any) => {
-      this.stations = stations;
     });
   }
 
 
   onSubmit(e) {
     console.log(e);
-    this.showGrid = true;
-    /**
-     * GET DATA from BE
-     * ADD STATISTICS
-     */
+    this.stationData.getCityData(this.selectedRegion.id, this.selectedCity.id, e.value.month, e.value.year).subscribe((res: any) => {
+      console.log(res);
+      this.data = res;
+      this.showGrid = true;
+    })
   }
 
   searchAgain() {
     this.showGrid = false;
-    this.selection = {region: '', city: '', station: ''};
   }
 }

@@ -10,7 +10,7 @@
                         <div class="input-container">
                             <div class="input-form">
                                 <kendo-floatinglabel text="Choose Region">
-                                    <kendo-dropdownlist [data]="regions" textField="name" valueField="id">
+                                    <kendo-dropdownlist [data]="regions" textField="name" valueField="id" (selectionChange)="onRegionSelect($event)">
                                     </kendo-dropdownlist>
                                     <!-- <div *ngIf="usernameInput.touched && !usernameInput.valid">
                                     <kendo-formerror *ngIf="usernameInput.errors.required">Username is requred.</kendo-formerror>
@@ -19,7 +19,7 @@
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Choose City">
-                                    <kendo-dropdownlist [data]="cities" textField="name" valueField="id">
+                                    <kendo-dropdownlist [data]="cities" textField="name" valueField="id" (selectionChange)="onCitySelect($event)">
                                     </kendo-dropdownlist>
                                     <!-- <div *ngIf="passwordInput.touched && !passwordInput.valid">
                                     <kendo-formerror *ngIf="passwordInput.errors.required">Password is requred.</kendo-formerror>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Choose Station">
-                                    <kendo-dropdownlist [data]="stations" textField="name" valueField="id">
+                                    <kendo-dropdownlist [data]="stations" textField="name" valueField="id" (selectionChange)="onStationSelect($event)">
                                     </kendo-dropdownlist>
                                 </kendo-floatinglabel>
                             </div>
@@ -161,17 +161,22 @@
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
-                                <div class="mb-2">
-                                    <kendo-label text="Choose a start date"></kendo-label>
-                                </div>
-                                <input required ngModel #startDate="ngModel" type="month" name="startDate"
-                                    min="1990-01" />
+                                <kendo-floatinglabel text="Enter Year">
+                                    <input required ngModel #year="ngModel" type="text" name="year" />
+                                    <div *ngIf="year.touched && !year.valid">
+                                        <kendo-formerror *ngIf="year.errors.required">Year is requred.
+                                        </kendo-formerror>
+                                    </div>
+                                </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
-                                <div class="mb-2">
-                                    <kendo-label text="Choose an end date"></kendo-label>
-                                </div>
-                                <input required ngModel #endDate="ngModel" type="month" name="endDate" min="1990-01" />
+                                <kendo-floatinglabel text="Enter Month">
+                                    <input required ngModel #month="ngModel" type="text" name="month" />
+                                    <div *ngIf="month.touched && !month.valid">
+                                        <kendo-formerror *ngIf="month.errors.required">Month is requred.
+                                        </kendo-formerror>
+                                    </div>
+                                </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
                                 <kendo-floatinglabel text="Enter Weight">
