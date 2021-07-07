@@ -27,6 +27,12 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { NoAccessComponent } from './component/no-access/no-access.component';
 import { StationDataService } from './services/station-data.service';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+
+
+
 
 
 
@@ -75,7 +81,9 @@ import { StationDataService } from './services/station-data.service';
     InputsModule,
     LabelModule,
     GridModule,
-    DropDownsModule
+    DropDownsModule,
+    ChartsModule,
+    DialogsModule
   ],
   providers: [UserService, RcsService, AuthService, AuthGuard, AdminAuthGuard, StationDataService],
   bootstrap: [AppComponent]
