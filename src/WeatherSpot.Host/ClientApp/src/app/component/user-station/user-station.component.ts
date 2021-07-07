@@ -39,6 +39,8 @@ export class UserStationComponent implements OnInit {
   public max: number;
   public data = [];
 
+  public date: string;
+
   public regions: any = [];
   public cities: any = [];
 
@@ -57,6 +59,8 @@ export class UserStationComponent implements OnInit {
 
   onRegionSelect(region) {
     this.selectedRegion = region;
+    console.log(region);
+    
 
     this.service.getCities(region.id).subscribe((cities: any) => {
       this.cities = cities;
@@ -65,9 +69,8 @@ export class UserStationComponent implements OnInit {
 
 
   onSubmit(e) {
-    console.log(e);
+    this.date = `${e.value.month}/${e.value.year}`;
     this.stationData.getCityData(this.selectedCity.id, e.value.month, e.value.year).subscribe((res: any) => {
-      console.log(res);
       this.data = res;
       this.showGrid = true;
     })
@@ -78,10 +81,8 @@ export class UserStationComponent implements OnInit {
   }
 
   showStat() {
-    console.log(this.stationValues);
 
     const value = this.choosedStat.value;
-    console.log(this.choosedStat);
     
     const stat = value.split('.');
     this.statisticChart = stat[1];
@@ -99,7 +100,6 @@ export class UserStationComponent implements OnInit {
     this.min = this.stationValues[0];
     this.max = this.stationValues[this.stationValues.length - 1];
 
-    console.log(this.stationValues);
     
 
     return this.stationValues;

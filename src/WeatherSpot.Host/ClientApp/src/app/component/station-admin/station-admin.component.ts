@@ -51,12 +51,10 @@ export class StationAdminComponent implements OnInit {
 
   onStationSelect(station) {
     this.selectedStation = station;
-    console.log(this.selectedStation);
 
   }
 
   onSubmit(e) {
-    console.log(e);
     this.isWeightValid = e.value.weight <= 1 ? e.value.weight >= 0 ? true : false : false;
 
     if(e.valid && this.isWeightValid) {

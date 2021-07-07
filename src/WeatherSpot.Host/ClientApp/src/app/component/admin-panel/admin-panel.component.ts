@@ -22,9 +22,9 @@ export class AdminPanelComponent implements OnInit {
 
   canAdminChangeRole() {
     const admin = this.auth.currentUser();
-    if (admin.RoleId === 1) return true;
+    if (admin.RoleId === '1') return false;
 
-    return false;
+    return true;
   }
 
   changeUserRole(newRole, userId) {
