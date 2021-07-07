@@ -45,7 +45,6 @@
 	c.Id as CityId,
 	c.RegionId as RegionId
 FROM StationData s
-FROM StationData s
 INNER JOIN TemperatureData td ON s.Id = td.StationDataId
 INNER JOIN RainData rd ON s.Id = rd.StationDataId
 INNER JOIN StatisticsData sd ON s.Id = sd.StationDataId

@@ -19,9 +19,9 @@
 
         [HttpGet]
         [Route("getStationData")]
-        public IEnumerable<StationData> GetStationData(int regionId, int cityId, int month, int year)
+        public IEnumerable<StationData> GetStationData(int cityId, int month, int year)
         {
-            return _stationDataService.GetStationData(regionId, cityId, month, year);
+            return _stationDataService.GetStationData(cityId, month, year);
         }
 
         [HttpPost]
