@@ -13,10 +13,6 @@
                                     <kendo-dropdownlist [data]="regions" textField="name" valueField="id"
                                         (selectionChange)="onRegionSelect($event)">
                                     </kendo-dropdownlist>
-                                    <!-- <div *ngIf="usernameInput.touched && !usernameInput.valid">
-                                            <kendo-formerror *ngIf="usernameInput.errors.required">Username is requred.</kendo-formerror>
-                                            <kendo-formerror *ngIf="usernameInput.errors.minlength">Username must be more than 6 characters.</kendo-formerror>
-                                        </div> -->
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
@@ -24,10 +20,6 @@
                                     <kendo-dropdownlist [data]="cities" textField="name" valueField="id"
                                         (selectionChange)="selectedCity = $event">
                                     </kendo-dropdownlist>
-                                    <!-- <div *ngIf="nameInput.touched && !nameInput.valid">
-                                            <kendo-formerror *ngIf="nameInput.errors.required">Name is requred.</kendo-formerror>
-                                            <kendo-formerror *ngIf="nameInput.errors.minlength">Name must be more than 6 characters.</kendo-formerror>
-                                        </div> -->
                                 </kendo-floatinglabel>
                             </div>
                             <div class="input-form">
@@ -67,6 +59,11 @@
         </kendo-card>
     </div>
     <div *ngIf="showGrid" class="grid-station">
+        <div>
+            <p>Регион: {{ selectedRegion.name }}</p>
+            <p>Град: {{ selectedCity.name }}</p>
+            <p>Дата: {{ date }}</p>
+        </div>
         <kendo-grid [data]="data" style="height: 450px; width: 1400px" [scrollable]="true">
             <button> <kendo-grid-column *ngIf="checkboxModel.temperature" field="stationName" title="Станция" width="100"></kendo-grid-column> </button>
             <kendo-grid-column *ngIf="checkboxModel.temperature" field="temperatureData.average" title="Tср" width="50"></kendo-grid-column>
@@ -84,7 +81,7 @@
             <kendo-grid-column *ngIf="checkboxModel.stats" field="statisticsData.daysWindOver14ms" title="Вятър >= 14(дни)" width="130"></kendo-grid-column>
             <kendo-grid-column *ngIf="checkboxModel.stats" field="statisticsData.daysThunderbolts" title="Гръмотевици(дни)" width="130"></kendo-grid-column>
         </kendo-grid>
-        <div class="stat-buttons">
+        <div class="back-button mt-3">
             <kendo-dropdownlist  [data]="statChoices" (selectionChange)="choosedStat = $event" [textField]="'text'" [valueField]="'value'">
             </kendo-dropdownlist>
             <button kendoButton [primary]="true" (click)="showStat()">Покажи статистика</button>
@@ -94,7 +91,7 @@
         </div>
     </div>
 
-    <kendo-window title="my window" *ngIf="opened" (close)="onClose()" [width]="1000" [height]="600">
+    <kendo-window title="" *ngIf="opened" (close)="onClose()" [width]="1000" [height]="600">
 
         <kendo-chart>
             <kendo-chart-title [text]="choosedStat.text"></kendo-chart-title>

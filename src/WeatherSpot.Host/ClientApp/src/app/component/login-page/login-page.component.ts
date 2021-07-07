@@ -18,7 +18,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(e) {
-    console.log(e);
 
     const user: LoginUser = new LoginUser(e.value.username, e.value.password);
 
